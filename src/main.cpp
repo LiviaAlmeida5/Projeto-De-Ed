@@ -1,0 +1,176 @@
+#include <iostream>
+#include "../include/MOSTRARTUDO.h"
+#include "../include/ORDENA.h"
+#include "../include/ALTERA.h"
+#include "../include/TROCA.h"
+#include "../include/INSERE.h"
+#include "../include/MOSTRARPARTE.h"
+#include "../include/dado.h"
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+void menu()
+{
+    char opcao;
+
+    do
+    {
+        cout << "O que deseja fazer?" << endl
+             << endl;
+        cout << "[1] Adicionar um elemento no arquivo em uma posição específica qualquer." << endl;
+        cout << "[2] Visualizar os registros entre duas posiçôes." << endl;
+        cout << "[3] Alterar os dados de um registro." << endl;
+        cout << "[4] Trocar dois registros de posição no arquivo." << endl;
+        cout << "[5] Visualizar todos os registros do arquivo armazenados." << endl;
+        cout << "[0] Encerrar o programa." << endl
+             << endl;
+
+        cin >> opcao;
+        switch (opcao)
+        {
+        case '1':
+            system("clear");
+            inserir();
+            break;
+        case '2':
+            system("clear");
+            mostra_x_ate_y();
+            break;
+        case '3':
+            system("clear");
+            alterar();
+            break;
+        case '4':
+            system("clear");
+            trocar();
+            break;
+        case '5':
+            system("clear");
+            visualizarTudo();
+            break;
+        case '0':
+            break;
+        default:
+            system("clear");
+            cout << "======================================================================================================================" << endl
+                 << endl;
+            cout << "Opção Inaválida!!" << endl
+                 << endl;
+            break;
+        }
+
+    } while (opcao != '0');
+}
+
+bool LeituraArquivo(string nome)
+{
+    string linha;
+    char lixo;
+
+    string teste;
+    char teste2;
+
+    dado buffer;
+
+    ifstream arq(nome);
+
+    if (!arq)
+    {
+        throw runtime_error("Arquivo inexistente");
+    }
+
+    ofstream saida("o.bin");
+
+    getline(arq, linha);
+
+    int i = 0;
+
+    while (arq.getline(buffer.Series_reference, 20, ','))
+    {
+        arq >> buffer.Period;
+        arq >> lixo;
+        getline(arq, teste, ',');
+        if (not teste.empty())
+        {
+            buffer.Data_value = stof(teste);
+        }
+        else
+        {
+            buffer.Data_value = -1;
+        }
+        arq >> buffer.Status;
+        arq >> lixo;
+        arq.getline(buffer.Units, 10, ',');
+        arq >> buffer.Magnitude;
+        arq >> lixo;
+        arq.getline(buffer.Subject, 50, ',');
+        arq.getline(buffer.Periodicity, 10, ',');
+        arq >> teste2;
+        if (teste2 == '"')
+        {
+            string guarda = "\"";
+            string recebe;
+
+            getline(arq, recebe, ',');
+
+            guarda += (recebe + ",");
+
+            getline(arq, recebe, ',');
+
+            guarda += recebe;
+
+            copy(&guarda[0], &guarda[guarda.size()], buffer.Group);
+            buffer.Group[guarda.size()] = '\0';
+        }
+        else
+        {
+            string guarda = "";
+            guarda += teste2;
+            string recebe;
+
+            getline(arq, recebe, ',');
+
+            guarda += recebe;
+
+            copy(&guarda[0], &guarda[guarda.size()], buffer.Group);
+            buffer.Group[guarda.size()] = '\0';
+        }
+
+        arq.getline(buffer.Series_title_1, 70, ',');
+        arq.getline(buffer.Series_title_2, 70, ',');
+        arq.getline(buffer.Series_title_3, 70, ',');
+        arq.getline(buffer.Series_title_4, 70, ',');
+        arq.getline(buffer.Series_title_5, 70);
+
+        saida.write((const char *)(&buffer), sizeof(dado));
+    }
+    return true;
+}
+
+int main(int argc, char const *argv[])
+{
+    string nome;
+    bool ConseguiuLer = false;
+
+    do
+    {
+        cout << "Digite o nome do arquivo: ";
+        cin >> nome;
+        try
+        {
+            ConseguiuLer = LeituraArquivo(nome);
+        }
+        catch (const std::exception &e)
+        {
+            cerr << e.what() << '\n';
+        }
+
+    } while (not ConseguiuLer);
+
+    ordenar();
+
+    menu();
+    return 0;
+}
