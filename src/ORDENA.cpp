@@ -43,8 +43,8 @@ class MinHeap
 {
 private:
     // atributos
-    dado *heap;
-    int capacidade;
+    const int capacidade = 1000;
+    dado heap[1000];
     int tamanho;
 
     // modulos privados
@@ -55,28 +55,30 @@ private:
     void heapfy(); // controi o heap
 
 public:
-    MinHeap(int cap, ifstream &entrada);
-    ~MinHeap();
+    MinHeap(ifstream &entrada);
     dado retiraRaiz(); // retira a raiz quando não há mais elementos no arquivo csv
     dado retiraRaizCedo(dado novo); // retira a raiz quando há mais elementos no arquivo csv que precisam entrar no heap
     bool vazia() { return tamanho == 0; } // verifica se o heap está vazio
 };
 
-MinHeap::MinHeap(int cap, ifstream &entrada)
+MinHeap::MinHeap(ifstream &entrada)
 {
-    heap = new dado[cap];
-    capacidade = cap;
-    tamanho = cap;
-
-    entrada.read((char *)(&heap[0]), cap * sizeof(dado));
+    entrada.seekg(0, entrada.end);
+    int tamanhoArquivo = entrada.tellg()/sizeof(dado);
+    entrada.seekg(0, entrada.beg);
+    
+    if (tamanhoArquivo <= 1000)
+    {
+        tamanho = tamanhoArquivo;
+        entrada.read((char *)(heap), tamanhoArquivo * sizeof(dado));
+    }
+    else
+    {
+        tamanho = capacidade;
+        entrada.read((char *)(heap), capacidade * sizeof(dado));
+    }
 
     heapfy();
-}
-
-MinHeap::~MinHeap()
-{
-
-    delete[] heap;
 }
 
 int MinHeap::pai(int i)
@@ -161,17 +163,15 @@ dado MinHeap::retiraRaizCedo(dado novo)
 
 void criaBlocos()
 {
-
     ifstream entrada("o.bin");
 
-    const int capacidade = 1000; // capacidade do heap
     int i = 0;
 
     dado aux1;
     dado aux2;
 
     ofstream fita1("fita1.bin");
-    MinHeap heap(capacidade, entrada);
+    MinHeap heap(entrada);
 
     cout << "Carregando  ";
 
