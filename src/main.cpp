@@ -5,6 +5,7 @@
 #include "../include/TROCA.h"
 #include "../include/INSERE.h"
 #include "../include/MOSTRARPARTE.h"
+#include "../include/EXPORTAARQUIVO.h"
 #include "../include/dado.h"
 #include <fstream>
 #include <string>
@@ -24,6 +25,7 @@ void menu()
         cout << "[3] Alterar os dados de um registro." << endl;
         cout << "[4] Trocar dois registros de posição no arquivo." << endl;
         cout << "[5] Visualizar todos os registros do arquivo armazenados." << endl;
+        cout << "[6] Exportar arquivo para CSV." << endl;
         cout << "[0] Encerrar o programa." << endl
              << endl;
 
@@ -50,6 +52,9 @@ void menu()
             system("clear");
             visualizarTudo();
             break;
+        case '6':
+            system("clear");
+            exportaArquivo();
         case '0':
             break;
         default:
