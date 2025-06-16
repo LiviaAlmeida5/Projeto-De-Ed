@@ -4,8 +4,9 @@
 
 using namespace std;
 
-bool validação(int tamMax, string aux);
-bool ValidaçãoInt(string num);
-bool ValidaçãoFloat(string aux);
+bool validacao(int tamMax, string aux);
+bool validacaoInt(string num);
+bool validacaoData(string aux);
+bool validacaoFloat(string aux);
 
 #endif

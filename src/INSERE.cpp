@@ -39,7 +39,7 @@ void inserir()
         getline(cin, aux);
         cout << endl;
 
-        if (validação(20, aux))
+        if (validacao(20, aux))
         {
             aux.copy(novo.Series_reference, aux.size());
             novo.Series_reference[aux.size()] = '\0';
@@ -53,7 +53,7 @@ void inserir()
         getline(cin, aux);
         cout << endl;
 
-        if (ValidaçãoFloat(aux))
+        if (validacaoFloat(aux))
         {
             novo.Period = stof(aux);
         }
@@ -64,7 +64,7 @@ void inserir()
             cout << "Nome inválido!!" << endl
                  << endl;
         }
-    } while (not ValidaçãoFloat(aux));
+    } while (not validacaoFloat(aux));
 
     do
     {
@@ -72,7 +72,7 @@ void inserir()
         getline(cin, aux);
         cout << endl;
 
-        if (ValidaçãoInt(aux))
+        if (validacaoInt(aux))
         {
             novo.Data_value = stoi(aux);
         }
@@ -84,7 +84,7 @@ void inserir()
                  << endl;
         };
 
-    } while (not ValidaçãoInt(aux) or aux.empty());
+    } while (not validacaoInt(aux) or aux.empty());
 
     cout << "Escreva o novo 'Status'(char): ";
     cin >> novo.Status;
@@ -96,7 +96,7 @@ void inserir()
         getline(cin, aux);
         cout << endl;
 
-        if (validação(10, aux))
+        if (validacao(10, aux))
         {
             aux.copy(novo.Units, aux.size());
             novo.Units[aux.size()] = '\0';
@@ -110,7 +110,7 @@ void inserir()
         getline(cin, aux);
         cout << endl;
 
-        if (ValidaçãoInt(aux))
+        if (validacaoInt(aux))
         {
             novo.Magnitude = stoi(aux);
         }
@@ -122,7 +122,7 @@ void inserir()
                  << endl;
         };
 
-    } while (not ValidaçãoInt(aux) or aux.empty());
+    } while (not validacaoInt(aux) or aux.empty());
 
     do
     {
@@ -130,7 +130,7 @@ void inserir()
         getline(cin, aux);
         cout << endl;
 
-        if (validação(50, aux))
+        if (validacao(50, aux))
         {
             aux.copy(novo.Subject, aux.size());
             novo.Subject[aux.size()] = '\0';
@@ -144,7 +144,7 @@ void inserir()
         getline(cin, aux);
         cout << endl;
 
-        if (validação(10, aux))
+        if (validacao(10, aux))
         {
             aux.copy(novo.Periodicity, aux.size());
             novo.Periodicity[aux.size()] = '\0';
@@ -158,7 +158,7 @@ void inserir()
         getline(cin, aux);
         cout << endl;
 
-        if (validação(100, aux))
+        if (validacao(100, aux))
         {
             aux.copy(novo.Group, aux.size());
             novo.Group[aux.size()] = '\0';
@@ -172,7 +172,7 @@ void inserir()
         getline(cin, aux);
         cout << endl;
 
-        if (validação(70, aux))
+        if (validacao(70, aux))
         {
             aux.copy(novo.Series_title_1, aux.size());
             novo.Series_title_1[aux.size()] = '\0';
@@ -186,7 +186,7 @@ void inserir()
         getline(cin, aux);
         cout << endl;
 
-        if (validação(70, aux))
+        if (validacao(70, aux))
         {
             aux.copy(novo.Series_title_2, aux.size());
             novo.Series_title_2[aux.size()] = '\0';
@@ -200,7 +200,7 @@ void inserir()
         getline(cin, aux);
         cout << endl;
 
-        if (validação(70, aux))
+        if (validacao(70, aux))
         {
             aux.copy(novo.Series_title_3, aux.size());
             novo.Series_title_3[aux.size()] = '\0';
@@ -214,7 +214,7 @@ void inserir()
         getline(cin, aux);
         cout << endl;
 
-        if (validação(70, aux))
+        if (validacao(70, aux))
         {
             aux.copy(novo.Series_title_4, aux.size());
             novo.Series_title_4[aux.size()] = '\0';
@@ -228,7 +228,7 @@ void inserir()
         getline(cin, aux);
         cout << endl;
 
-        if (validação(70, aux))
+        if (validacao(70, aux))
         {
             aux.copy(novo.Series_title_5, aux.size());
             novo.Series_title_5[aux.size()] = '\0';

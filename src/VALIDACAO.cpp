@@ -3,7 +3,7 @@
 using namespace std;
 
 
-bool validação(int tamMax, string aux)
+bool validacao(int tamMax, string aux)
 {
     if (aux.size() <= tamMax and not aux.empty()) // verifica se o nome é válido
     {
@@ -16,7 +16,7 @@ bool validação(int tamMax, string aux)
     return false;
 }
 
-bool ValidaçãoInt(string num)
+bool validacaoInt(string num)
 {
     for (int i = 0; i < num.size(); i++)
     {
@@ -28,7 +28,7 @@ bool ValidaçãoInt(string num)
     return true;
 }
 
-bool ValidaçãoFloat(string aux)
+bool validacaoData(string aux)
 {
     int cont = 0;
     for (int i = 0; i < aux.size(); i++)
@@ -52,4 +52,26 @@ bool ValidaçãoFloat(string aux)
         return true;
     }
     return false;
+}
+
+bool validacaoFloat(string aux)
+{
+    int cont = 0;
+    for (int i = 0; i < aux.size(); i++)
+    {
+        if (aux[i] == '.')
+        {
+            cont++;
+        }
+        else if (not isdigit(aux[i]))
+        {
+            return false;
+        }
+    }
+
+    if (cont > 1 or aux.size() == 0)
+    {
+        return false;
+    }
+    return true;
 }
