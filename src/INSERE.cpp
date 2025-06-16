@@ -1,9 +1,11 @@
+// Nomes dos Membros do Grupo: Gustavo Gerônimo Ribeiro, Lívia Maria Almeida Silva e Maurício Vicente Sandim
+// Função para inserir um registro em uma determinada posição
+
 #include "../include/INSERE.h"
 #include "../include/VALIDACAO.h"
 #include "../include/dado.h"
 #include <iostream>
 #include <fstream>
-#include <cstring> // Para usar memset
 
 using namespace std;
 
@@ -15,6 +17,7 @@ void inserir()
     arq.seekg(0, ios::end);
     int total_registros = arq.tellg() / sizeof(dado);
 
+    // acessa a posição
     int pos;
 
     do
@@ -39,13 +42,13 @@ void inserir()
         getline(cin, aux);
         cout << endl;
 
-        if (validacao(20, aux))
+        if (validacao(19, aux))
         {
             aux.copy(novo.Series_reference, aux.size());
             novo.Series_reference[aux.size()] = '\0';
         }
 
-    } while (aux.size() > 20 or aux.empty());
+    } while (aux.size() > 19 or aux.empty());
 
     do
     {
@@ -53,7 +56,7 @@ void inserir()
         getline(cin, aux);
         cout << endl;
 
-        if (validacaoFloat(aux))
+        if (validacaoData(aux))
         {
             novo.Period = stof(aux);
         }
@@ -61,10 +64,10 @@ void inserir()
         {
             cout << "======================================================================================================================" << endl
                  << endl;
-            cout << "Nome inválido!!" << endl
+            cout << "Valor inválido!!" << endl
                  << endl;
         }
-    } while (not validacaoFloat(aux));
+    } while (not validacaoData(aux));
 
     do
     {
@@ -72,24 +75,40 @@ void inserir()
         getline(cin, aux);
         cout << endl;
 
-        if (validacaoInt(aux))
+        if (validacaoFloat(aux))
         {
-            novo.Data_value = stoi(aux);
+            novo.Data_value = stof(aux);
         }
         else
         {
             cout << "======================================================================================================================" << endl
                  << endl;
-            cout << "Número inválido!!" << endl
+            cout << "Valor inválido!!" << endl
                  << endl;
         };
 
-    } while (not validacaoInt(aux) or aux.empty());
+    } while (not validacaoFloat(aux) or aux.empty());
 
-    cout << "Escreva o novo 'Status'(char): ";
-    cin >> novo.Status;
+    do
+    {
+        cout << "Escreva o novo 'Status'(char): ";
+        getline(cin, aux);
+        cout << endl;
 
-    cin.ignore();
+        if (aux.size() == 1)
+        {
+            novo.Status = aux[0];
+        }
+        else
+        {
+            cout << "======================================================================================================================" << endl
+                    << endl;
+               cout << "Char inválido!!" << endl
+                    << endl;
+        }
+
+    } while (aux.size() != 1);
+
     do
     {
         cout << "Escreva o novo 'Units': ";
@@ -118,7 +137,7 @@ void inserir()
         {
             cout << "======================================================================================================================" << endl
                  << endl;
-            cout << "Número inválido!!" << endl
+            cout << "Valor inválido!!" << endl
                  << endl;
         };
 
@@ -235,8 +254,6 @@ void inserir()
         }
 
     } while (aux.size() > 70 or aux.empty());
-
-    // cin >> novo.Series_reference >> novo.Period >> novo.Data_value >> novo.Status >> novo.Units >> novo.Magnitude >> novo.Subject >> novo.Periodicity >> novo.Group >> novo.Series_title_1 >> novo.Series_title_2 >> novo.Series_title_3 >> novo.Series_title_4 >> novo.Series_title_5;
 
     // move para frente
     dado buffer;

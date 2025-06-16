@@ -1,3 +1,6 @@
+// Nomes dos Membros do Grupo: Gustavo Gerônimo Ribeiro, Lívia Maria Almeida Silva e Maurício Vicente Sandim
+// Função para alterar as informações de um determinado registro
+
 #include "../include/ALTERA.h"
 #include "../include/VALIDACAO.h"
 #include "../include/dado.h"
@@ -10,20 +13,21 @@ using namespace std;
 
 void alterar()
 {
-   dado novo;
+   // variaveis da função
+   dado alterado;
    string aux;
    int posição;
    int opcao;
    fstream arq("o.bin");
-   string temp;
-
+   
+   // acesso da posição
    arq.seekg(0, arq.end);
    int tam = arq.tellg() / sizeof(dado);
    arq.seekg(0, arq.beg);
 
    cout << "======================================================================================================================" << endl
         << endl;
-
+   
    do
    {
       cout << "Digite a posição que você deseja alterar seu registro: ";
@@ -36,14 +40,15 @@ void alterar()
    } while (posição < 0 or posição > tam);
 
    arq.seekg(posição * sizeof(dado));
-   arq.read((char *)(&novo), sizeof(dado));
+   arq.read((char *)(&alterado), sizeof(dado));
 
+   // menu de alteração
    do
    {
       system("clear");
       cout << "Os dados dessa posição são:" << endl;
       cout << "Series_reference | Period | Data_value | Status | Units | Magnitude | Subject | Periodicity | Group | Series_title_1 | Series_title_2 | Series_title_3 | Series_title_4 | Series_title_5" << endl;
-      cout << novo.Series_reference << " | " << novo.Period << " | " << novo.Data_value << " | " << novo.Status << " | " << novo.Units << " | " << novo.Magnitude << " | " << novo.Subject << " | " << novo.Periodicity << " | " << novo.Group << " | " << novo.Series_title_1 << " | " << novo.Series_title_2 << " | " << novo.Series_title_3 << " | " << novo.Series_title_4 << " | " << novo.Series_title_5 << endl
+      cout << alterado.Series_reference << " | " << alterado.Period << " | " << alterado.Data_value << " | " << alterado.Status << " | " << alterado.Units << " | " << alterado.Magnitude << " | " << alterado.Subject << " | " << alterado.Periodicity << " | " << alterado.Group << " | " << alterado.Series_title_1 << " | " << alterado.Series_title_2 << " | " << alterado.Series_title_3 << " | " << alterado.Series_title_4 << " | " << alterado.Series_title_5 << endl
            << endl;
 
       cout << "Qual parte do registro você deseja aleterar?" << endl
@@ -62,7 +67,7 @@ void alterar()
            << "[12] Series_title_3 " << endl
            << "[13] Series_title_4 " << endl
            << "[14] Series_title_5 " << endl
-           << "[0] Voltar para o menu" << endl;
+           << "[0] Finalizar alterações " << endl;
 
       cin >> opcao;
 
@@ -72,14 +77,14 @@ void alterar()
          cin.ignore();
          do
          {
-            cout << "Escreva o novo 'Series_reference': ";
+            cout << "Escreva o alterado 'Series_reference': ";
             getline(cin, aux);
             cout << endl;
 
             if (validacao(20, aux))
             {
-               aux.copy(novo.Series_reference, aux.size());
-               novo.Series_reference[aux.size()] = '\0';
+               aux.copy(alterado.Series_reference, aux.size());
+               alterado.Series_reference[aux.size()] = '\0';
             }
 
          } while (aux.size() > 20 or aux.empty());
@@ -89,13 +94,13 @@ void alterar()
          cin.ignore();
          do
          {
-            cout << "Escreva o novo 'Period'(data no formato 0000.00): ";
+            cout << "Escreva o alterado 'Period'(data no formato 0000.00): ";
             getline(cin, aux);
             cout << endl;
 
             if (validacaoData(aux))
             {
-               novo.Period = stof(aux);
+               alterado.Period = stof(aux);
             }
             else
             {
@@ -110,13 +115,13 @@ void alterar()
          cin.ignore();
          do
          {
-            cout << "Escreva o novo 'Data_value'(float): ";
+            cout << "Escreva o alterado 'Data_value'(float): ";
             getline(cin, aux);
             cout << endl;
 
             if (validacaoFloat(aux))
             {
-               novo.Data_value = stof(aux);
+               alterado.Data_value = stof(aux);
             }
             else
             {
@@ -132,13 +137,13 @@ void alterar()
          cin.ignore();
          do
          {
-            cout << "Escreva o novo 'Status'(char): ";
+            cout << "Escreva o alterado 'Status'(char): ";
             getline(cin, aux);
             cout << endl;
 
             if (aux.size() == 1)
             {
-               novo.Status = aux[0];
+               alterado.Status = aux[0];
             }
             else
             {
@@ -154,14 +159,14 @@ void alterar()
          cin.ignore();
          do
          {
-            cout << "Escreva o novo 'Units': ";
+            cout << "Escreva o alterado 'Units': ";
             getline(cin, aux);
             cout << endl;
 
             if (validacao(10, aux))
             {
-               aux.copy(novo.Units, aux.size());
-               novo.Units[aux.size()] = '\0';
+               aux.copy(alterado.Units, aux.size());
+               alterado.Units[aux.size()] = '\0';
             }
 
          } while (aux.size() > 10 or aux.empty());
@@ -170,13 +175,13 @@ void alterar()
          cin.ignore();
          do
          {
-            cout << "Escreva o novo 'Magnitude'(int): ";
+            cout << "Escreva o alterado 'Magnitude'(int): ";
             getline(cin, aux);
             cout << endl;
 
             if (validacaoInt(aux))
             {
-               novo.Magnitude = stoi(aux);
+               alterado.Magnitude = stoi(aux);
             }
             else
             {
@@ -192,14 +197,14 @@ void alterar()
          cin.ignore();
          do
          {
-            cout << "Escreva o novo 'Subject': ";
+            cout << "Escreva o alterado 'Subject': ";
             getline(cin, aux);
             cout << endl;
 
             if (validacao(50, aux))
             {
-               aux.copy(novo.Subject, aux.size());
-               novo.Subject[aux.size()] = '\0';
+               aux.copy(alterado.Subject, aux.size());
+               alterado.Subject[aux.size()] = '\0';
             }
 
          } while (aux.size() > 50 or aux.empty());
@@ -208,14 +213,14 @@ void alterar()
          cin.ignore();
          do
          {
-            cout << "Escreva o novo 'Periodicity': ";
+            cout << "Escreva o alterado 'Periodicity': ";
             getline(cin, aux);
             cout << endl;
 
             if (validacao(10, aux))
             {
-               aux.copy(novo.Periodicity, aux.size());
-               novo.Periodicity[aux.size()] = '\0';
+               aux.copy(alterado.Periodicity, aux.size());
+               alterado.Periodicity[aux.size()] = '\0';
             }
 
          } while (aux.size() > 10 or aux.empty());
@@ -224,14 +229,14 @@ void alterar()
          cin.ignore();
          do
          {
-            cout << "Escreva o novo 'Group': ";
+            cout << "Escreva o alterado 'Group': ";
             getline(cin, aux);
             cout << endl;
 
             if (validacao(100, aux))
             {
-               aux.copy(novo.Group, aux.size());
-               novo.Group[aux.size()] = '\0';
+               aux.copy(alterado.Group, aux.size());
+               alterado.Group[aux.size()] = '\0';
             }
 
          } while (aux.size() > 100 or aux.empty());
@@ -240,14 +245,14 @@ void alterar()
          cin.ignore();
          do
          {
-            cout << "Escreva o novo 'Series_title_1': ";
+            cout << "Escreva o alterado 'Series_title_1': ";
             getline(cin, aux);
             cout << endl;
 
             if (validacao(70, aux))
             {
-               aux.copy(novo.Series_title_1, aux.size());
-               novo.Series_title_1[aux.size()] = '\0';
+               aux.copy(alterado.Series_title_1, aux.size());
+               alterado.Series_title_1[aux.size()] = '\0';
             }
 
          } while (aux.size() > 70 or aux.empty());
@@ -256,14 +261,14 @@ void alterar()
          cin.ignore();
          do
          {
-            cout << "Escreva o novo 'Series_title_2': ";
+            cout << "Escreva o alterado 'Series_title_2': ";
             getline(cin, aux);
             cout << endl;
 
             if (validacao(70, aux))
             {
-               aux.copy(novo.Series_title_2, aux.size());
-               novo.Series_title_2[aux.size()] = '\0';
+               aux.copy(alterado.Series_title_2, aux.size());
+               alterado.Series_title_2[aux.size()] = '\0';
             }
 
          } while (aux.size() > 70 or aux.empty());
@@ -272,14 +277,14 @@ void alterar()
          cin.ignore();
          do
          {
-            cout << "Escreva o novo 'Series_title_3': ";
+            cout << "Escreva o alterado 'Series_title_3': ";
             getline(cin, aux);
             cout << endl;
 
             if (validacao(70, aux))
             {
-               aux.copy(novo.Series_title_3, aux.size());
-               novo.Series_title_3[aux.size()] = '\0';
+               aux.copy(alterado.Series_title_3, aux.size());
+               alterado.Series_title_3[aux.size()] = '\0';
             }
 
          } while (aux.size() > 70 or aux.empty());
@@ -288,14 +293,14 @@ void alterar()
          cin.ignore();
          do
          {
-            cout << "Escreva o novo 'Series_title_4': ";
+            cout << "Escreva o alterado 'Series_title_4': ";
             getline(cin, aux);
             cout << endl;
 
             if (validacao(70, aux))
             {
-               aux.copy(novo.Series_title_4, aux.size());
-               novo.Series_title_4[aux.size()] = '\0';
+               aux.copy(alterado.Series_title_4, aux.size());
+               alterado.Series_title_4[aux.size()] = '\0';
             }
 
          } while (aux.size() > 70 or aux.empty());
@@ -304,14 +309,14 @@ void alterar()
          cin.ignore();
          do
          {
-            cout << "Escreva o novo 'Series_title_5': ";
+            cout << "Escreva o alterado 'Series_title_5': ";
             getline(cin, aux);
             cout << endl;
 
             if (validacao(70, aux))
             {
-               aux.copy(novo.Series_title_5, aux.size());
-               novo.Series_title_5[aux.size()] = '\0';
+               aux.copy(alterado.Series_title_5, aux.size());
+               alterado.Series_title_5[aux.size()] = '\0';
             }
 
          } while (aux.size() > 70 or aux.empty());
@@ -324,17 +329,18 @@ void alterar()
       };
    } while (opcao != 0);
 
+   // substituição do dado
    arq.seekp(posição * sizeof(dado));
-   arq.write((const char *)(&novo), sizeof(dado));
+   arq.write((const char *)(&alterado), sizeof(dado));
 
    arq.seekg(posição * sizeof(dado));
-   arq.read((char *)(&novo), sizeof(dado));
+   arq.read((char *)(&alterado), sizeof(dado));
 
    cout << endl
-        << novo.Series_reference << " | " << novo.Period << " | " << novo.Data_value << " | " << novo.Status << " | " << novo.Units << " | " << novo.Magnitude << " | " << novo.Subject << " | " << novo.Periodicity << " | " << novo.Group << " | " << novo.Series_title_1 << " | " << novo.Series_title_2 << " | " << novo.Series_title_3 << " | " << novo.Series_title_4 << " | " << novo.Series_title_5 << endl
+        << alterado.Series_reference << " | " << alterado.Period << " | " << alterado.Data_value << " | " << alterado.Status << " | " << alterado.Units << " | " << alterado.Magnitude << " | " << alterado.Subject << " | " << alterado.Periodicity << " | " << alterado.Group << " | " << alterado.Series_title_1 << " | " << alterado.Series_title_2 << " | " << alterado.Series_title_3 << " | " << alterado.Series_title_4 << " | " << alterado.Series_title_5 << endl
         << endl;
 
-   cout << "Alterações salvas!!" << endl
+   cout << "Registro guardado!!" << endl
         << endl;
 
    cout << "Digite '0' para voltar ao menu inicial!" << endl;

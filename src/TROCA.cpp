@@ -1,3 +1,6 @@
+// Nomes dos Membros do Grupo: Gustavo Gerônimo Ribeiro, Lívia Maria Almeida Silva e Maurício Vicente Sandim
+// Função para trocar dois registros do arquivo
+
 #include "../include/TROCA.h"
 #include "../include/dado.h"
 #include <iostream>
@@ -11,6 +14,7 @@ void trocar()
      int posição1, posição2;
      fstream arq("o.bin");
 
+     // recepção das posições
      arq.seekg(0, arq.end);
      int tam = arq.tellg() / sizeof(dado);
      arq.seekg(0, arq.beg);
@@ -39,6 +43,7 @@ void trocar()
           }
      } while (posição2 < 0 or posição2 > tam);
 
+     // leitura dos dados
      arq.seekg(posição1 * sizeof(dado));
      arq.read((char *)(&aux1), sizeof(dado));
 
@@ -52,6 +57,7 @@ void trocar()
           << aux2.Series_reference << " | " << aux2.Period << " | " << aux2.Data_value << " | " << aux2.Status << " | " << aux2.Units << " | " << aux2.Magnitude << " | " << aux2.Subject << " | " << aux2.Periodicity << " | " << aux2.Group << " | " << aux2.Series_title_1 << " | " << aux2.Series_title_2 << " | " << aux2.Series_title_3 << " | " << aux2.Series_title_4 << " | " << aux2.Series_title_5 << endl
           << endl;
 
+     // troca dos dados
      arq.seekp(posição1 * sizeof(dado));
      arq.write((const char *)(&aux2), sizeof(dado));
 
@@ -61,6 +67,7 @@ void trocar()
      arq.seekg(posição2 * sizeof(dado));
      arq.read((char *)(&aux2), sizeof(dado));
 
+     // resultado final
      cout << "Após a troca:" << endl
           << endl;
 
@@ -76,6 +83,7 @@ void trocar()
      cout << "Alterações salvas!!" << endl
           << endl;
 
+     // finalização
      cout << "Digite '0' para voltar ao menu inicial!" << endl;
      string voltar = "a";
      while (voltar != "0")

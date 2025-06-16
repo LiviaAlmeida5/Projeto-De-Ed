@@ -1,3 +1,6 @@
+// Nomes dos Membros do Grupo: Gustavo Gerônimo Ribeiro, Lívia Maria Almeida Silva e Maurício Vicente Sandim
+// Funções para verificar se o dado inserido pelo usuário é válido
+
 #include <iostream>
 
 using namespace std;
@@ -5,7 +8,7 @@ using namespace std;
 
 bool validacao(int tamMax, string aux)
 {
-    if (aux.size() <= tamMax and not aux.empty()) // verifica se o nome é válido
+    if (aux.size() <= tamMax and not aux.empty()) // verifica se o texto tem o tamanho adequado
     {
         return true;
     }
@@ -16,11 +19,11 @@ bool validacao(int tamMax, string aux)
     return false;
 }
 
-bool validacaoInt(string num)
+bool validacaoInt(string num) // verifica se o valor é um inteiro
 {
     for (int i = 0; i < num.size(); i++)
     {
-        if (not isdigit(num[i]) or num.size() > 9) // verifica se o caractere é um dígito e se o número é menor que 10^9
+        if (not isdigit(num[i]) or num.size() > 9)
         {
             return false;
         }
@@ -28,7 +31,7 @@ bool validacaoInt(string num)
     return true;
 }
 
-bool validacaoData(string aux)
+bool validacaoData(string aux) // verifica se o dado está no formato de data (0000.00)
 {
     int cont = 0;
     for (int i = 0; i < aux.size(); i++)
@@ -54,7 +57,7 @@ bool validacaoData(string aux)
     return false;
 }
 
-bool validacaoFloat(string aux)
+bool validacaoFloat(string aux) // verifica se o dado é um número decimal
 {
     int cont = 0;
     for (int i = 0; i < aux.size(); i++)

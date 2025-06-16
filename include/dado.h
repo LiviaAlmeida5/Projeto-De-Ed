@@ -1,3 +1,6 @@
+// Nomes dos Membros do Grupo: Gustavo Gerônimo Ribeiro, Lívia Maria Almeida Silva e Maurício Vicente Sandim
+// Header com a struct usada para os registros
+
 #ifndef DADO_H
 #define DADO_H
 

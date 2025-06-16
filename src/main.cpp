@@ -1,3 +1,6 @@
+// Nomes dos Membros do Grupo: Gustavo Gerônimo Ribeiro, Lívia Maria Almeida Silva e Maurício Vicente Sandim
+// Função principal com  abertura do arquivo, ordenação e menu principal
+
 #include <iostream>
 #include "../include/MOSTRARTUDO.h"
 #include "../include/ORDENA.h"
@@ -12,7 +15,7 @@
 
 using namespace std;
 
-void menu()
+void menu() 
 {
     char opcao;
 
@@ -56,6 +59,8 @@ void menu()
             system("clear");
             exportaArquivo();
         case '0':
+            system("clear");
+            remove("o.bin");
             break;
         default:
             system("clear");
@@ -69,7 +74,7 @@ void menu()
     } while (opcao != '0');
 }
 
-bool LeituraArquivo(string nome)
+bool LeituraArquivo(string nome) 
 {
     string linha;
     char lixo;
@@ -81,22 +86,25 @@ bool LeituraArquivo(string nome)
 
     ifstream arq(nome);
 
+    // caso não consiga abrir o arquivo
     if (!arq)
     {
         throw runtime_error("Arquivo inexistente");
     }
 
+    // leitura do csv e escrita do binario
     ofstream saida("o.bin");
-
+    
     getline(arq, linha);
-
+    
     int i = 0;
-
+    
     while (arq.getline(buffer.Series_reference, 20, ','))
     {
         arq >> buffer.Period;
         arq >> lixo;
         getline(arq, teste, ',');
+        // tratamento de campo 
         if (not teste.empty())
         {
             buffer.Data_value = stof(teste);
@@ -113,6 +121,7 @@ bool LeituraArquivo(string nome)
         arq.getline(buffer.Subject, 50, ',');
         arq.getline(buffer.Periodicity, 10, ',');
         arq >> teste2;
+        // tratamento de campo com ',' no texto
         if (teste2 == '"')
         {
             string guarda = "\"";
@@ -159,6 +168,7 @@ int main(int argc, char const *argv[])
     string nome;
     bool ConseguiuLer = false;
 
+    // abertura do arquivo
     do
     {
         cout << "Digite o nome do arquivo: ";

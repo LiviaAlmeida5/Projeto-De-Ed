@@ -1,3 +1,6 @@
+// Nomes dos Membros do Grupo: Gustavo Gerônimo Ribeiro, Lívia Maria Almeida Silva e Maurício Vicente Sandim
+// Funções utilizadas para ordenar o arquivo com base no campo Data_Value utilizando intercalação polifásica
+
 #include <iostream>
 #include <fstream>
 #include <algorithm>
@@ -6,6 +9,7 @@
 
 using namespace std;
 
+// consnte auxiliar usada na mensagem de carregamento
 const char carregamento[] = {
     '|',
     '/',
@@ -13,6 +17,7 @@ const char carregamento[] = {
     '\\',
 };
 
+// sobrecarga de operador de comparação
 bool operator<(dado d1, dado d2)
 {
     return d1.Data_value < d2.Data_value;
@@ -33,6 +38,7 @@ bool operator>=(dado d1, dado d2)
     return d1.Data_value >= d2.Data_value;
 }
 
+// classe heap auxiliar para criação dos blocos ordenados
 class MinHeap
 {
 private:
@@ -42,18 +48,18 @@ private:
     int tamanho;
 
     // modulos privados
-    inline int pai(int i);
-    inline int esquerdo(int i);
-    inline int direito(int i);
-    void corrigeDescendo(int i);
-    void heapfy();
+    inline int pai(int i); // acha o pai do valor
+    inline int esquerdo(int i); // acha o filho esquerdo do valor
+    inline int direito(int i); // acha o filho direito do valor
+    void corrigeDescendo(int i); 
+    void heapfy(); // controi o heap
 
 public:
     MinHeap(int cap, ifstream &entrada);
     ~MinHeap();
-    dado retiraRaiz();
-    dado retiraRaizCedo(dado novo);
-    bool vazia() { return tamanho == 0; }
+    dado retiraRaiz(); // retira a raiz quando não há mais elementos no arquivo csv
+    dado retiraRaizCedo(dado novo); // retira a raiz quando há mais elementos no arquivo csv que precisam entrar no heap
+    bool vazia() { return tamanho == 0; } // verifica se o heap está vazio
 };
 
 MinHeap::MinHeap(int cap, ifstream &entrada)
@@ -145,6 +151,7 @@ dado MinHeap::retiraRaizCedo(dado novo)
 
     dado aux = heap[inicio];
 
+    // substitui raiz por um novo dado e reconstroi o heap
     heap[inicio] = novo;
 
     heapfy();
@@ -157,12 +164,9 @@ void criaBlocos()
 
     ifstream entrada("o.bin");
 
-    entrada.seekg(0, entrada.end);
-
-    const int capacidade = 400;
+    const int capacidade = 1000; // capacidade do heap
     int i = 0;
 
-    entrada.seekg(0, entrada.beg);
     dado aux1;
     dado aux2;
 
@@ -171,6 +175,7 @@ void criaBlocos()
 
     cout << "Carregando  ";
 
+    // controi a fita 1 de forma assimétrica enquanto o o.bin não foi lido por completo
     while (entrada.read((char *)(&aux1), sizeof(dado)))
     {
         cout << '\b' << carregamento[i / 1000 % 4];
@@ -184,6 +189,7 @@ void criaBlocos()
 
     ofstream fita2("fita2.bin");
 
+    // controi a fita 2 com o último bloco
     while (!heap.vazia())
     {
         aux1 = heap.retiraRaiz();
@@ -205,10 +211,12 @@ void intercala()
 
     while (!fita1.eof())
     {
-        cout << '\b' << carregamento[i / 100 % 4];
+        // mensagem de carrregamento
+        cout << '\b' << carregamento[i / 10 % 4];
         cout.flush();
         i++;
 
+        // fita 3 sendo escrita
         if (alterna)
         {
             alterna = !alterna;
@@ -221,17 +229,20 @@ void intercala()
 
             while (!fita2.eof())
             {
+                // caso bloco ou arquivo tenha terminado
                 if (fita1.eof() or compara1 < anterior)
                 {
                     fita3.write((const char *)(&compara2), sizeof(dado));
                     fita2.read((char *)(&compara2), sizeof(dado));
                 }
+                // dado da fita 1 menor que o da fita 2 
                 else if (compara1 < compara2)
                 {
                     anterior = compara1;
                     fita3.write((const char *)(&compara1), sizeof(dado));
                     fita1.read((char *)(&compara1), sizeof(dado));
                 }
+                // dado da fita 2 menor que o da fita 1
                 else
                 {
                     fita3.write((const char *)(&compara2), sizeof(dado));
@@ -239,6 +250,7 @@ void intercala()
                 }
             }
 
+            // finaliza escrita do bloco caso fita 2 tenha terminado
             while (compara1 >= anterior and !fita1.eof())
             {
                 fita3.write((const char *)(&compara1), sizeof(dado));
@@ -249,6 +261,7 @@ void intercala()
             anterior = compara1;
         }
 
+        // fita 2 sendo escrita
         else
         {
             alterna = !alterna;
@@ -261,17 +274,20 @@ void intercala()
 
             while (!fita2.eof())
             {
+                // caso bloco ou arquivo tenha terminado
                 if (fita1.eof() or compara1 < anterior)
                 {
                     fita3.write((const char *)(&compara2), sizeof(dado));
                     fita2.read((char *)(&compara2), sizeof(dado));
                 }
+                // dado da fita 1 menor que o da fita 3 
                 else if (compara1 < compara2)
                 {
                     anterior = compara1;
                     fita3.write((const char *)(&compara1), sizeof(dado));
                     fita1.read((char *)(&compara1), sizeof(dado));
                 }
+                // dado da fita 3 menor que o da fita 1
                 else
                 {
                     fita3.write((const char *)(&compara2), sizeof(dado));
@@ -279,6 +295,7 @@ void intercala()
                 }
             }
 
+            // finaliza escrita do bloco caso fita 3 tenha terminado
             while (compara1 >= anterior and !fita1.eof())
             {
                 fita3.write((const char *)(&compara1), sizeof(dado));
@@ -290,6 +307,7 @@ void intercala()
         }
     }
 
+    // remoção de arquivos temporários
     remove("fita1.bin");
 
     if (alterna)
