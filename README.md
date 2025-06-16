@@ -22,8 +22,14 @@ Integrantes: Gustavo G. Ribeiro, Lívia Maria, Mauricio Sandim:
 
 **Compilação e execução**
 
-Para compilar o programa, abra o terminal no diretório onde está a pastar 'src' e 'include', e digite:
+Para compilar o programa, abra o terminal no diretório onde está a pastar `'src'` e `'include'`, e digite:
 
 ```bash
 $ make
+```
 
+Caso queira compilar utilizando o g++, digite o comando:
+
+```bash
+$ g++ src/*.cpp -Iinclude -o programa
+```
