@@ -1,7 +1,6 @@
 // Nomes dos Membros do Grupo: Gustavo Gerônimo Ribeiro, Lívia Maria Almeida Silva e Maurício Vicente Sandim
 // Função para alterar as informações de um determinado registro
 
-#include "../include/ALTERA.h"
 #include "../include/VALIDACAO.h"
 #include "../include/dado.h"
 #include <iostream>
@@ -19,25 +18,25 @@ void alterar()
    int posição;
    int opcao;
    fstream arq("o.bin");
-   
+
    // acesso da posição
    arq.seekg(0, arq.end);
    int tam = arq.tellg() / sizeof(dado);
    arq.seekg(0, arq.beg);
 
-   cout << "======================================================================================================================" << endl
-        << endl;
-   
+   cout << "======================================================================================================================" << endl;
+   cout << endl;
+
    do
    {
       cout << "Digite a posição que você deseja alterar seu registro: ";
       cin >> posição;
-      if (posição < 0 or posição > tam)
+      if (posição < 0 or posição >= tam)
       {
-         cout << "Posição Inválida!!" << endl
-              << endl;
+         cout << "Posição Inválida!!" << endl;
+         cout << endl;
       }
-   } while (posição < 0 or posição > tam);
+   } while (posição < 0 or posição >= tam);
 
    arq.seekg(posição * sizeof(dado));
    arq.read((char *)(&alterado), sizeof(dado));
@@ -48,26 +47,26 @@ void alterar()
       system("clear");
       cout << "Os dados dessa posição são:" << endl;
       cout << "Series_reference | Period | Data_value | Status | Units | Magnitude | Subject | Periodicity | Group | Series_title_1 | Series_title_2 | Series_title_3 | Series_title_4 | Series_title_5" << endl;
-      cout << alterado.Series_reference << " | " << alterado.Period << " | " << alterado.Data_value << " | " << alterado.Status << " | " << alterado.Units << " | " << alterado.Magnitude << " | " << alterado.Subject << " | " << alterado.Periodicity << " | " << alterado.Group << " | " << alterado.Series_title_1 << " | " << alterado.Series_title_2 << " | " << alterado.Series_title_3 << " | " << alterado.Series_title_4 << " | " << alterado.Series_title_5 << endl
-           << endl;
+      cout << alterado.Series_reference << " | " << alterado.Period << " | " << alterado.Data_value << " | " << alterado.Status << " | " << alterado.Units << " | " << alterado.Magnitude << " | " << alterado.Subject << " | " << alterado.Periodicity << " | " << alterado.Group << " | " << alterado.Series_title_1 << " | " << alterado.Series_title_2 << " | " << alterado.Series_title_3 << " | " << alterado.Series_title_4 << " | " << alterado.Series_title_5 << endl;
+      cout << endl;
 
-      cout << "Qual parte do registro você deseja aleterar?" << endl
-           << endl
-           << "[1] Series_reference" << endl
-           << "[2] Period " << endl
-           << "[3] Data_value " << endl
-           << "[4] Status " << endl
-           << "[5] Units " << endl
-           << "[6] Magnitude " << endl
-           << "[7] Subject " << endl
-           << "[8] Periodicity " << endl
-           << "[9] Group" << endl
-           << "[10] Series_title_1 " << endl
-           << "[11] Series_title_2 " << endl
-           << "[12] Series_title_3 " << endl
-           << "[13] Series_title_4 " << endl
-           << "[14] Series_title_5 " << endl
-           << "[0] Finalizar alterações " << endl;
+      cout << "Qual parte do registro você deseja aleterar?" << endl;
+      cout << endl;
+      cout << "[1] Series_reference" << endl;
+      cout << "[2] Period " << endl;
+      cout << "[3] Data_value " << endl;
+      cout << "[4] Status " << endl;
+      cout << "[5] Units " << endl;
+      cout << "[6] Magnitude " << endl;
+      cout << "[7] Subject " << endl;
+      cout << "[8] Periodicity " << endl;
+      cout << "[9] Group" << endl;
+      cout << "[10] Series_title_1 " << endl;
+      cout << "[11] Series_title_2 " << endl;
+      cout << "[12] Series_title_3 " << endl;
+      cout << "[13] Series_title_4 " << endl;
+      cout << "[14] Series_title_5 " << endl;
+      cout << "[0] Finalizar alterações " << endl;
 
       cin >> opcao;
 
@@ -79,7 +78,6 @@ void alterar()
          {
             cout << "Escreva o alterado 'Series_reference': ";
             getline(cin, aux);
-            cout << endl;
 
             if (validacao(20, aux))
             {
@@ -96,7 +94,6 @@ void alterar()
          {
             cout << "Escreva o alterado 'Period'(data no formato 0000.00): ";
             getline(cin, aux);
-            cout << endl;
 
             if (validacaoData(aux))
             {
@@ -104,10 +101,10 @@ void alterar()
             }
             else
             {
-               cout << "======================================================================================================================" << endl
-                    << endl;
-               cout << "Valor inválido!!" << endl
-                    << endl;
+               cout << "======================================================================================================================" << endl;
+               cout << endl;
+               cout << "Valor inválido!!" << endl;
+               cout << endl;
             }
          } while (not validacaoData(aux));
          break;
@@ -117,7 +114,6 @@ void alterar()
          {
             cout << "Escreva o alterado 'Data_value'(float): ";
             getline(cin, aux);
-            cout << endl;
 
             if (validacaoFloat(aux))
             {
@@ -125,10 +121,10 @@ void alterar()
             }
             else
             {
-               cout << "======================================================================================================================" << endl
-                    << endl;
-               cout << "Valor inválido!!" << endl
-                    << endl;
+               cout << "======================================================================================================================" << endl;
+               cout << endl;
+               cout << "Valor inválido!!" << endl;
+               cout << endl;
             };
 
          } while (not validacaoFloat(aux) or aux.empty());
@@ -139,7 +135,6 @@ void alterar()
          {
             cout << "Escreva o alterado 'Status'(char): ";
             getline(cin, aux);
-            cout << endl;
 
             if (aux.size() == 1)
             {
@@ -147,10 +142,10 @@ void alterar()
             }
             else
             {
-               cout << "======================================================================================================================" << endl
-                    << endl;
-               cout << "Char inválido!!" << endl
-                    << endl;
+               cout << "======================================================================================================================" << endl;
+               cout << endl;
+               cout << "Char inválido!!" << endl;
+               cout << endl;
             };
 
          } while (aux.size() != 1);
@@ -161,7 +156,6 @@ void alterar()
          {
             cout << "Escreva o alterado 'Units': ";
             getline(cin, aux);
-            cout << endl;
 
             if (validacao(10, aux))
             {
@@ -177,7 +171,6 @@ void alterar()
          {
             cout << "Escreva o alterado 'Magnitude'(int): ";
             getline(cin, aux);
-            cout << endl;
 
             if (validacaoInt(aux))
             {
@@ -185,10 +178,10 @@ void alterar()
             }
             else
             {
-               cout << "======================================================================================================================" << endl
-                    << endl;
-               cout << "Valor inválido!!" << endl
-                    << endl;
+               cout << "======================================================================================================================" << endl;
+               cout << endl;
+               cout << "Valor inválido!!" << endl;
+               cout << endl;
             };
 
          } while (not validacaoInt(aux) or aux.empty());
@@ -199,7 +192,6 @@ void alterar()
          {
             cout << "Escreva o alterado 'Subject': ";
             getline(cin, aux);
-            cout << endl;
 
             if (validacao(50, aux))
             {
@@ -215,7 +207,6 @@ void alterar()
          {
             cout << "Escreva o alterado 'Periodicity': ";
             getline(cin, aux);
-            cout << endl;
 
             if (validacao(10, aux))
             {
@@ -231,7 +222,6 @@ void alterar()
          {
             cout << "Escreva o alterado 'Group': ";
             getline(cin, aux);
-            cout << endl;
 
             if (validacao(100, aux))
             {
@@ -247,7 +237,6 @@ void alterar()
          {
             cout << "Escreva o alterado 'Series_title_1': ";
             getline(cin, aux);
-            cout << endl;
 
             if (validacao(70, aux))
             {
@@ -263,7 +252,6 @@ void alterar()
          {
             cout << "Escreva o alterado 'Series_title_2': ";
             getline(cin, aux);
-            cout << endl;
 
             if (validacao(70, aux))
             {
@@ -279,7 +267,6 @@ void alterar()
          {
             cout << "Escreva o alterado 'Series_title_3': ";
             getline(cin, aux);
-            cout << endl;
 
             if (validacao(70, aux))
             {
@@ -295,7 +282,6 @@ void alterar()
          {
             cout << "Escreva o alterado 'Series_title_4': ";
             getline(cin, aux);
-            cout << endl;
 
             if (validacao(70, aux))
             {
@@ -311,7 +297,6 @@ void alterar()
          {
             cout << "Escreva o alterado 'Series_title_5': ";
             getline(cin, aux);
-            cout << endl;
 
             if (validacao(70, aux))
             {
@@ -336,12 +321,12 @@ void alterar()
    arq.seekg(posição * sizeof(dado));
    arq.read((char *)(&alterado), sizeof(dado));
 
-   cout << endl
-        << alterado.Series_reference << " | " << alterado.Period << " | " << alterado.Data_value << " | " << alterado.Status << " | " << alterado.Units << " | " << alterado.Magnitude << " | " << alterado.Subject << " | " << alterado.Periodicity << " | " << alterado.Group << " | " << alterado.Series_title_1 << " | " << alterado.Series_title_2 << " | " << alterado.Series_title_3 << " | " << alterado.Series_title_4 << " | " << alterado.Series_title_5 << endl
-        << endl;
+   cout << endl;
+   cout << alterado.Series_reference << " | " << alterado.Period << " | " << alterado.Data_value << " | " << alterado.Status << " | " << alterado.Units << " | " << alterado.Magnitude << " | " << alterado.Subject << " | " << alterado.Periodicity << " | " << alterado.Group << " | " << alterado.Series_title_1 << " | " << alterado.Series_title_2 << " | " << alterado.Series_title_3 << " | " << alterado.Series_title_4 << " | " << alterado.Series_title_5 << endl;
+   cout << endl;
 
-   cout << "Registro guardado!!" << endl
-        << endl;
+   cout << "Registro guardado!!" << endl;
+   cout << endl;
 
    cout << "Digite '0' para voltar ao menu inicial!" << endl;
    string voltar = "a";

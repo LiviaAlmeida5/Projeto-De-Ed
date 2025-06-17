@@ -5,17 +5,11 @@
 #include <fstream>
 #include <algorithm>
 #include "../include/dado.h"
-#include "../include/ORDENA.h"
 
 using namespace std;
 
 // consnte auxiliar usada na mensagem de carregamento
-const char carregamento[] = {
-    '|',
-    '/',
-    '-',
-    '\\',
-};
+const char carregamento[] = {'|', '/', '-', '\\'};
 
 // sobrecarga de operador de comparação
 bool operator<(dado d1, dado d2)

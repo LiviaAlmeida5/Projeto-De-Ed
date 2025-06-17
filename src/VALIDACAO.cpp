@@ -5,17 +5,14 @@
 
 using namespace std;
 
-
 bool validacao(int tamMax, string aux)
 {
     if (aux.size() <= tamMax and not aux.empty()) // verifica se o texto tem o tamanho adequado
     {
         return true;
     }
-    cout << "======================================================================================================================" << endl
-         << endl;
-    cout << "Nome inválido!!" << endl
-         << endl;
+    cout << "======================================================================================================================" << endl << endl;
+    cout << "Nome inválido!!" << endl << endl;
     return false;
 }
 
@@ -33,16 +30,21 @@ bool validacaoInt(string num) // verifica se o valor é um inteiro
 
 bool validacaoData(string aux) // verifica se o dado está no formato de data (0000.00)
 {
-    int cont = 0;
+    int contPonto = 0;
+    if (aux.size() != 7)
+    {
+        return false;
+    }
+    if (aux[4] != '.')
+    {
+        return false;
+    }
+
     for (int i = 0; i < aux.size(); i++)
     {
-        if (aux.size() != 7)
+        if (aux[i] == '.')
         {
-            return false;
-        }
-        else if (aux[i] == '.')
-        {
-            cont++;
+            contPonto++;
         }
         else if (not isdigit(aux[i]) and aux[i] != '.')
         {
@@ -50,7 +52,7 @@ bool validacaoData(string aux) // verifica se o dado está no formato de data (0
         }
     }
 
-    if (cont == 1)
+    if (contPonto == 1)
     {
         return true;
     }

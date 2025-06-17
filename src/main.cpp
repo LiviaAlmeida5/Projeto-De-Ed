@@ -21,16 +21,16 @@ void menu()
 
     do
     {
-        cout << "O que deseja fazer?" << endl
-             << endl;
+        cout << "O que deseja fazer?" << endl;
+        cout << endl;
         cout << "[1] Adicionar um elemento no arquivo em uma posição específica qualquer." << endl;
         cout << "[2] Visualizar os registros entre duas posiçôes." << endl;
         cout << "[3] Alterar os dados de um registro." << endl;
         cout << "[4] Trocar dois registros de posição no arquivo." << endl;
         cout << "[5] Visualizar todos os registros do arquivo armazenados." << endl;
         cout << "[6] Exportar arquivo para CSV." << endl;
-        cout << "[0] Encerrar o programa." << endl
-             << endl;
+        cout << "[0] Encerrar o programa." << endl;
+        cout << endl;
 
         cin >> opcao;
         switch (opcao)
@@ -64,10 +64,10 @@ void menu()
             break;
         default:
             system("clear");
-            cout << "======================================================================================================================" << endl
-                 << endl;
-            cout << "Opção Inaválida!!" << endl
-                 << endl;
+            cout << "======================================================================================================================" << endl;
+            cout << endl;
+            cout << "Opção Inaválida!!" << endl;
+            cout << endl;
             break;
         }
 
@@ -79,8 +79,8 @@ bool LeituraArquivo(string nome)
     string linha;
     char lixo;
 
-    string teste;
-    char teste2;
+    string auxVerificaCampoVazio;
+    char auxVerificaCampoComVirgula;
 
     dado buffer;
 
@@ -102,27 +102,39 @@ bool LeituraArquivo(string nome)
     while (arq.getline(buffer.Series_reference, 20, ','))
     {
         arq >> buffer.Period;
+        
         arq >> lixo;
-        getline(arq, teste, ',');
+        
         // tratamento de campo 
-        if (not teste.empty())
+        getline(arq, auxVerificaCampoVazio, ',');
+        
+        if (not auxVerificaCampoVazio.empty())
         {
-            buffer.Data_value = stof(teste);
+            buffer.Data_value = stof(auxVerificaCampoVazio);
         }
         else
         {
             buffer.Data_value = -1;
         }
+        
         arq >> buffer.Status;
+        
         arq >> lixo;
+        
         arq.getline(buffer.Units, 10, ',');
+        
         arq >> buffer.Magnitude;
+        
         arq >> lixo;
+        
         arq.getline(buffer.Subject, 50, ',');
+        
         arq.getline(buffer.Periodicity, 10, ',');
-        arq >> teste2;
+        
         // tratamento de campo com ',' no texto
-        if (teste2 == '"')
+        arq >> auxVerificaCampoComVirgula;
+        
+        if (auxVerificaCampoComVirgula == '"')
         {
             string guarda = "\"";
             string recebe;
@@ -141,7 +153,7 @@ bool LeituraArquivo(string nome)
         else
         {
             string guarda = "";
-            guarda += teste2;
+            guarda += auxVerificaCampoComVirgula;
             string recebe;
 
             getline(arq, recebe, ',');
@@ -153,9 +165,13 @@ bool LeituraArquivo(string nome)
         }
 
         arq.getline(buffer.Series_title_1, 70, ',');
+        
         arq.getline(buffer.Series_title_2, 70, ',');
+        
         arq.getline(buffer.Series_title_3, 70, ',');
+        
         arq.getline(buffer.Series_title_4, 70, ',');
+        
         arq.getline(buffer.Series_title_5, 70);
 
         saida.write((const char *)(&buffer), sizeof(dado));

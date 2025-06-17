@@ -1,7 +1,6 @@
 // Nomes dos Membros do Grupo: Gustavo Gerônimo Ribeiro, Lívia Maria Almeida Silva e Maurício Vicente Sandim
 // Função para inserir um registro em uma determinada posição
 
-#include "../include/INSERE.h"
 #include "../include/VALIDACAO.h"
 #include "../include/dado.h"
 #include <iostream>
@@ -22,17 +21,18 @@ void inserir()
 
     do
     {
-        cout << "Em qual posição você quer inserir? (De 0 até " << total_registros << ")\n";
+        cout << "Em qual posição você quer inserir (De 0 até " << total_registros << ")? ";
         cin >> pos;
         if (pos < 0 or pos > total_registros)
         {
-            cout << "Posição inválida.\n";
+            cout << "Posição inválida. " << endl;
         }
+
     } while (pos < 0 or pos > total_registros);
 
     // dados do novo registro
     dado novo;
-    cout << "Escreva o novo registro:\n";
+    cout << "Escreva o novo registro: ";
     string aux;
 
     cin.ignore();
@@ -40,7 +40,6 @@ void inserir()
     {
         cout << "Escreva o novo 'Series_reference': ";
         getline(cin, aux);
-        cout << endl;
 
         if (validacao(19, aux))
         {
@@ -54,7 +53,6 @@ void inserir()
     {
         cout << "Escreva o novo 'Period'(data no formato 0000.00): ";
         getline(cin, aux);
-        cout << endl;
 
         if (validacaoData(aux))
         {
@@ -62,10 +60,10 @@ void inserir()
         }
         else
         {
-            cout << "======================================================================================================================" << endl
-                 << endl;
-            cout << "Valor inválido!!" << endl
-                 << endl;
+            cout << "======================================================================================================================" << endl;
+            cout << endl;
+            cout << "Valor inválido!!" << endl;
+            cout << endl;
         }
     } while (not validacaoData(aux));
 
@@ -73,7 +71,6 @@ void inserir()
     {
         cout << "Escreva o novo 'Data_value'(int): ";
         getline(cin, aux);
-        cout << endl;
 
         if (validacaoFloat(aux))
         {
@@ -81,10 +78,10 @@ void inserir()
         }
         else
         {
-            cout << "======================================================================================================================" << endl
-                 << endl;
-            cout << "Valor inválido!!" << endl
-                 << endl;
+            cout << "======================================================================================================================" << endl;
+            cout << endl;
+            cout << "Valor inválido!!" << endl;
+            cout << endl;
         };
 
     } while (not validacaoFloat(aux) or aux.empty());
@@ -93,7 +90,6 @@ void inserir()
     {
         cout << "Escreva o novo 'Status'(char): ";
         getline(cin, aux);
-        cout << endl;
 
         if (aux.size() == 1)
         {
@@ -101,10 +97,10 @@ void inserir()
         }
         else
         {
-            cout << "======================================================================================================================" << endl
-                    << endl;
-               cout << "Char inválido!!" << endl
-                    << endl;
+            cout << "======================================================================================================================" << endl;
+            cout << endl;
+            cout << "Char inválido!!" << endl;
+            cout << endl;
         }
 
     } while (aux.size() != 1);
@@ -113,7 +109,6 @@ void inserir()
     {
         cout << "Escreva o novo 'Units': ";
         getline(cin, aux);
-        cout << endl;
 
         if (validacao(10, aux))
         {
@@ -127,7 +122,6 @@ void inserir()
     {
         cout << "Escreva o novo 'Magnitude'(int): ";
         getline(cin, aux);
-        cout << endl;
 
         if (validacaoInt(aux))
         {
@@ -135,10 +129,10 @@ void inserir()
         }
         else
         {
-            cout << "======================================================================================================================" << endl
-                 << endl;
-            cout << "Valor inválido!!" << endl
-                 << endl;
+            cout << "======================================================================================================================" << endl;
+            cout << endl;
+            cout << "Valor inválido!!" << endl;
+            cout << endl;
         };
 
     } while (not validacaoInt(aux) or aux.empty());
@@ -147,7 +141,6 @@ void inserir()
     {
         cout << "Escreva o novo 'Subject': ";
         getline(cin, aux);
-        cout << endl;
 
         if (validacao(50, aux))
         {
@@ -161,7 +154,6 @@ void inserir()
     {
         cout << "Escreva o novo 'Periodicity': ";
         getline(cin, aux);
-        cout << endl;
 
         if (validacao(10, aux))
         {
@@ -175,7 +167,6 @@ void inserir()
     {
         cout << "Escreva o novo 'Group': ";
         getline(cin, aux);
-        cout << endl;
 
         if (validacao(100, aux))
         {
@@ -189,7 +180,6 @@ void inserir()
     {
         cout << "Escreva o novo 'Series_title_1': ";
         getline(cin, aux);
-        cout << endl;
 
         if (validacao(70, aux))
         {
@@ -203,7 +193,6 @@ void inserir()
     {
         cout << "Escreva o novo 'Series_title_2': ";
         getline(cin, aux);
-        cout << endl;
 
         if (validacao(70, aux))
         {
@@ -217,7 +206,6 @@ void inserir()
     {
         cout << "Escreva o novo 'Series_title_3': ";
         getline(cin, aux);
-        cout << endl;
 
         if (validacao(70, aux))
         {
@@ -231,7 +219,6 @@ void inserir()
     {
         cout << "Escreva o novo 'Series_title_4': ";
         getline(cin, aux);
-        cout << endl;
 
         if (validacao(70, aux))
         {
@@ -245,7 +232,6 @@ void inserir()
     {
         cout << "Escreva o novo 'Series_title_5': ";
         getline(cin, aux);
-        cout << endl;
 
         if (validacao(70, aux))
         {
@@ -270,7 +256,7 @@ void inserir()
     arq.seekp(pos * sizeof(dado), ios::beg);
     arq.write(reinterpret_cast<const char *>(&novo), sizeof(dado));
 
-    cout << "Registro inserido na posição " << pos << " com sucesso!\n";
+    cout << "Registro inserido na posição " << pos << " com sucesso!" << endl;
 
     arq.close();
 

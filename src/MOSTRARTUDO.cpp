@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <fstream>
-#include "../include/MOSTRARTUDO.h"
 #include "../include/dado.h"
 
 using namespace std;
@@ -19,13 +18,13 @@ void visualizarTudo()
     {
         // Imprime o conteúdo
         cout << cont << ": ";
-        cout << aux.Series_reference << " | " << aux.Period << " | " << aux.Data_value << " | " << aux.Status << " | " << aux.Units << " | " << aux.Magnitude << " | " << aux.Subject << " | " << aux.Periodicity << " | " << aux.Group << " | " << aux.Series_title_1 << " | " << aux.Series_title_2 << " | " << aux.Series_title_3 << " | " << aux.Series_title_4 << " | " << aux.Series_title_5 << endl
-             << endl;
+        cout << aux.Series_reference << " | " << aux.Period << " | " << aux.Data_value << " | " << aux.Status << " | " << aux.Units << " | " << aux.Magnitude << " | " << aux.Subject << " | " << aux.Periodicity << " | " << aux.Group << " | " << aux.Series_title_1 << " | " << aux.Series_title_2 << " | " << aux.Series_title_3 << " | " << aux.Series_title_4 << " | " << aux.Series_title_5 << endl;
+        cout << endl;
         cont++;
 
         // controle da saída (de 100 em 100 ou todos de uma vez)
         bool controle = true;
-        while(!mostraDeUmaVez and controle and (cont % 100 == 0))
+        while (!mostraDeUmaVez and controle and (cont % 100 == 0))
         {
             cout << "Digite '0' para mostrar o arquivo de uma vez ou '1' para mostrar mais 100 registros: ";
 
@@ -41,7 +40,6 @@ void visualizarTudo()
             {
                 controle = !controle;
             }
-            
         }
     }
 

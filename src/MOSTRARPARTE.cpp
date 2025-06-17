@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <fstream>
-#include "../include/MOSTRARPARTE.h"
 #include "../include/dado.h"
 
 using namespace std;
@@ -51,8 +50,8 @@ void mostra_x_ate_y()
 
         // Imprime o conteúdo
         cout << cont << ": ";
-        cout << aux.Series_reference << " | " << aux.Period << " | " << aux.Data_value << " | " << aux.Status << " | " << aux.Units << " | " << aux.Magnitude << " | " << aux.Subject << " | " << aux.Periodicity << " | " << aux.Group << " | " << aux.Series_title_1 << " | " << aux.Series_title_2 << " | " << aux.Series_title_3 << " | " << aux.Series_title_4 << " | " << aux.Series_title_5 << endl
-             << endl;
+        cout << aux.Series_reference << " | " << aux.Period << " | " << aux.Data_value << " | " << aux.Status << " | " << aux.Units << " | " << aux.Magnitude << " | " << aux.Subject << " | " << aux.Periodicity << " | " << aux.Group << " | " << aux.Series_title_1 << " | " << aux.Series_title_2 << " | " << aux.Series_title_3 << " | " << aux.Series_title_4 << " | " << aux.Series_title_5 << endl;
+        cout << endl;
         cont++;
     }
 
