@@ -161,8 +161,8 @@ void criaBlocos()
 
     int i = 0;
 
-    dado aux1;
-    dado aux2;
+    dado recebeDoArquivo;
+    dado recebeRaiz;
 
     ofstream fita1("fita1.bin");
     MinHeap heap(entrada);
@@ -170,15 +170,15 @@ void criaBlocos()
     cout << "Carregando  ";
 
     // controi a fita 1 de forma assimétrica enquanto o o.bin não foi lido por completo
-    while (entrada.read((char *)(&aux1), sizeof(dado)))
+    while (entrada.read((char *)(&recebeDoArquivo), sizeof(dado)))
     {
         cout << '\b' << carregamento[i / 1000 % 4];
         cout.flush();
         i++;
 
-        aux2 = heap.retiraRaizCedo(aux1);
+        recebeRaiz = heap.retiraRaizCedo(recebeDoArquivo);
 
-        fita1.write((const char *)(&aux2), sizeof(dado));
+        fita1.write((const char *)(&recebeRaiz), sizeof(dado));
     }
 
     ofstream fita2("fita2.bin");
@@ -186,8 +186,8 @@ void criaBlocos()
     // controi a fita 2 com o último bloco
     while (!heap.vazia())
     {
-        aux1 = heap.retiraRaiz();
-        fita2.write((const char *)(&aux1), sizeof(dado));
+        recebeRaiz = heap.retiraRaiz();
+        fita2.write((const char *)(&recebeRaiz), sizeof(dado));
     }
 }
 
