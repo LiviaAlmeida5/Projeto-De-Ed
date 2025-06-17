@@ -32,45 +32,61 @@ bool operator>=(dado d1, dado d2)
     return d1.Data_value >= d2.Data_value;
 }
 
+struct marca
+{
+    dado registro;
+    bool marcado;
+};
+
+bool operator<(marca d1, marca d2)
+{
+    if (d1.marcado == d2.marcado)
+    {
+        return d1.registro.Data_value < d2.registro.Data_value;
+    }
+
+    return !d1.marcado; // não marcados tem preferencia
+}
+
 // classe heap auxiliar para criação dos blocos ordenados
 class MinHeap
 {
 private:
     // atributos
-    const int capacidade = 1000;
-    dado heap[1000];
+    const int capacidade = 10000;
+    marca heap[10000];
     int tamanho;
 
     // modulos privados
-    inline int pai(int i); // acha o pai do valor
+    inline int pai(int i);      // acha o pai do valor
     inline int esquerdo(int i); // acha o filho esquerdo do valor
-    inline int direito(int i); // acha o filho direito do valor
-    void corrigeDescendo(int i); 
+    inline int direito(int i);  // acha o filho direito do valor
+    void corrigeDescendo(int i);
+    
+    public:
     void heapfy(); // controi o heap
-
-public:
     MinHeap(ifstream &entrada);
-    dado retiraRaiz(); // retira a raiz quando não há mais elementos no arquivo csv
+    dado retiraRaiz();              // retira a raiz quando não há mais elementos no arquivo csv
     dado retiraRaizCedo(dado novo); // retira a raiz quando há mais elementos no arquivo csv que precisam entrar no heap
+    void resetaMarca();
     bool vazia() { return tamanho == 0; } // verifica se o heap está vazio
 };
 
 MinHeap::MinHeap(ifstream &entrada)
 {
-    entrada.seekg(0, entrada.end);
-    int tamanhoArquivo = entrada.tellg()/sizeof(dado);
-    entrada.seekg(0, entrada.beg);
-    
-    if (tamanhoArquivo <= 1000)
+    int i = 0;
+    dado aux;
+    while (entrada.read((char *)(&aux), sizeof(dado)) and i < capacidade)
     {
-        tamanho = tamanhoArquivo;
-        entrada.read((char *)(heap), tamanhoArquivo * sizeof(dado));
+        heap[i].registro = aux;
+        heap[i].marcado = false;
+        i++;
     }
-    else
-    {
-        tamanho = capacidade;
-        entrada.read((char *)(heap), capacidade * sizeof(dado));
-    }
+
+    if(!entrada.eof())
+        entrada.seekg(sizeof(dado)*capacidade);
+
+    tamanho = i;
 
     heapfy();
 }
@@ -122,6 +138,14 @@ void MinHeap::heapfy()
     }
 }
 
+void MinHeap::resetaMarca()
+{
+    for (int i = 0; i < tamanho; i++)
+    {
+        heap[i].marcado = false;
+    }
+}
+
 dado MinHeap::retiraRaiz()
 {
     if (tamanho == 0)
@@ -130,7 +154,7 @@ dado MinHeap::retiraRaiz()
     int inicio = 0;
     int final = tamanho - 1;
 
-    dado aux = heap[inicio];
+    dado aux = heap[inicio].registro;
 
     swap(heap[inicio], heap[final]);
 
@@ -145,12 +169,24 @@ dado MinHeap::retiraRaizCedo(dado novo)
 {
     int inicio = 0;
 
-    dado aux = heap[inicio];
+    dado aux = heap[inicio].registro;
+    
+    marca substitui;
+    substitui.registro = novo;
+    substitui.marcado = false;
+
+    if (novo < aux)
+        substitui.marcado = true;
 
     // substitui raiz por um novo dado e reconstroi o heap
-    heap[inicio] = novo;
+    heap[inicio] = substitui;
 
     heapfy();
+
+    if (heap[inicio].marcado)
+    {
+        resetaMarca();
+    }
 
     return aux;
 }
@@ -165,9 +201,10 @@ void criaBlocos()
     dado recebeRaiz;
 
     ofstream fita1("fita1.bin");
-    MinHeap heap(entrada);
+    ofstream fita2("fita2.bin");
 
     cout << "Carregando  ";
+    MinHeap heap(entrada);
 
     // controi a fita 1 de forma assimétrica enquanto o o.bin não foi lido por completo
     while (entrada.read((char *)(&recebeDoArquivo), sizeof(dado)))
@@ -177,18 +214,19 @@ void criaBlocos()
         i++;
 
         recebeRaiz = heap.retiraRaizCedo(recebeDoArquivo);
-
         fita1.write((const char *)(&recebeRaiz), sizeof(dado));
     }
 
-    ofstream fita2("fita2.bin");
+    heap.resetaMarca();
+    heap.heapfy();
 
-    // controi a fita 2 com o último bloco
     while (!heap.vazia())
     {
         recebeRaiz = heap.retiraRaiz();
         fita2.write((const char *)(&recebeRaiz), sizeof(dado));
     }
+
+    rename("o.bin", "guarda.bin");
 }
 
 void intercala()
@@ -229,7 +267,7 @@ void intercala()
                     fita3.write((const char *)(&compara2), sizeof(dado));
                     fita2.read((char *)(&compara2), sizeof(dado));
                 }
-                // dado da fita 1 menor que o da fita 2 
+                // dado da fita 1 menor que o da fita 2
                 else if (compara1 < compara2)
                 {
                     anterior = compara1;
@@ -274,7 +312,7 @@ void intercala()
                     fita3.write((const char *)(&compara2), sizeof(dado));
                     fita2.read((char *)(&compara2), sizeof(dado));
                 }
-                // dado da fita 1 menor que o da fita 3 
+                // dado da fita 1 menor que o da fita 3
                 else if (compara1 < compara2)
                 {
                     anterior = compara1;
