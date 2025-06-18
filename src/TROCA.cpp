@@ -24,25 +24,25 @@ void trocar()
 
      do
      {
-          cout << "Primeira posição:" << endl;
+          cout << "Primeira posição (De 0 até " << tam-1 << "):" << endl;
           cin >> posição1;
-          if (posição1 < 0 or posição1 > tam)
+          if (posição1 < 0 or posição1 >= tam)
           {
                cout << "Posição Inválida!!" << endl;
           }
 
-     } while (posição1 < 0 or posição1 > tam);
+     } while (posição1 < 0 or posição1 >= tam);
 
      do
      {
-          cout << "Segunda posição:" << endl;
+          cout << "Segunda posição (De 0 até " << tam-1 << "):" << endl;
           cin >> posição2;
-          if (posição1 < 0 or posição1 > tam)
+          if (posição2 < 0 or posição2 >= tam)
           {
                cout << "Posição Inválida!!" << endl;
           }
 
-     } while (posição2 < 0 or posição2 > tam);
+     } while (posição2 < 0 or posição2 >= tam);
 
      // leitura dos dados
      arq.seekg(posição1 * sizeof(dado));
@@ -65,21 +65,23 @@ void trocar()
      arq.seekp(posição2 * sizeof(dado));
      arq.write((const char *)(&aux1), sizeof(dado));
 
-     arq.seekg(posição2 * sizeof(dado));
-     arq.read((char *)(&aux2), sizeof(dado));
-
      // resultado final
+
      cout << "Após a troca:" << endl;
      cout << endl;
 
-     cout << "Registro na posição: " << posição2 << endl;
-     cout << aux2.Series_reference << " | " << aux2.Period << " | " << aux2.Data_value << " | " << aux2.Status << " | " << aux2.Units << " | " << aux2.Magnitude << " | " << aux2.Subject << " | " << aux2.Periodicity << " | " << aux2.Group << " | " << aux2.Series_title_1 << " | " << aux2.Series_title_2 << " | " << aux2.Series_title_3 << " | " << aux2.Series_title_4 << " | " << aux2.Series_title_5 << endl;
+     arq.seekg(posição2 * sizeof(dado));
+     arq.read((char *)(&aux2), sizeof(dado));
 
      arq.seekg(posição1 * sizeof(dado));
      arq.read((char *)(&aux1), sizeof(dado));
 
      cout << "Registro na posição: " << posição1 << endl;
      cout << aux1.Series_reference << " | " << aux1.Period << " | " << aux1.Data_value << " | " << aux1.Status << " | " << aux1.Units << " | " << aux1.Magnitude << " | " << aux1.Subject << " | " << aux1.Periodicity << " | " << aux1.Group << " | " << aux1.Series_title_1 << " | " << aux1.Series_title_2 << " | " << aux1.Series_title_3 << " | " << aux1.Series_title_4 << " | " << aux1.Series_title_5 << endl;
+
+     cout << "Registro na posição: " << posição2 << endl;
+     cout << aux2.Series_reference << " | " << aux2.Period << " | " << aux2.Data_value << " | " << aux2.Status << " | " << aux2.Units << " | " << aux2.Magnitude << " | " << aux2.Subject << " | " << aux2.Periodicity << " | " << aux2.Group << " | " << aux2.Series_title_1 << " | " << aux2.Series_title_2 << " | " << aux2.Series_title_3 << " | " << aux2.Series_title_4 << " | " << aux2.Series_title_5 << endl;
+
 
      cout << "Alterações salvas!!" << endl;
      cout << endl;

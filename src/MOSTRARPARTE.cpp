@@ -20,7 +20,7 @@ void mostra_x_ate_y()
 
     do
     {
-        cout << "A posição inicial a qual deseja mostrar: " << endl;
+        cout << "A posição inicial a qual deseja mostrar (De 0 até " << tam-1 << "): " << endl;
         cin >> x;
         if (x < 0 or x >= tam)
         {
@@ -31,7 +31,7 @@ void mostra_x_ate_y()
 
     do
     {
-        cout << "A última posição a qual deseja mostrar: " << endl;
+        cout << "A última posição a qual deseja mostrar: (De " << x << " até " << tam-1 << ")" << endl;
         cin >> y;
         if (y < x or y >= tam)
         {

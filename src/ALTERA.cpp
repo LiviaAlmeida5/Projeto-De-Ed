@@ -29,7 +29,7 @@ void alterar()
 
    do
    {
-      cout << "Digite a posição que você deseja alterar seu registro: ";
+      cout << "Digite a posição que você deseja alterar seu registro (De 0 até " << tam-1 << "): ";
       cin >> posição;
       if (posição < 0 or posição >= tam)
       {
