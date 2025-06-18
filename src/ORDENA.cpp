@@ -64,7 +64,7 @@ private:
     void corrigeDescendo(int i);
     
     public:
-    void heapfy(); // controi o heap
+    void heapfy(); // constroi o heap
     MinHeap(ifstream &entrada);
     dado retiraRaiz();              // retira a raiz quando não há mais elementos no arquivo csv
     dado retiraRaizCedo(dado novo); // retira a raiz quando há mais elementos no arquivo csv que precisam entrar no heap
@@ -206,7 +206,7 @@ void criaBlocos()
     cout << "Carregando  ";
     MinHeap heap(entrada);
 
-    // controi a fita 1 de forma assimétrica enquanto o o.bin não foi lido por completo
+    // constroi a fita 1 de forma assimétrica enquanto o o.bin não foi lido por completo
     while (entrada.read((char *)(&recebeDoArquivo), sizeof(dado)))
     {
         cout << '\b' << carregamento[i / 1000 % 4];
