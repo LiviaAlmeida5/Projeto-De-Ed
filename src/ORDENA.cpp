@@ -76,15 +76,12 @@ MinHeap::MinHeap(ifstream &entrada)
 {
     int i = 0;
     dado aux;
-    while (entrada.read((char *)(&aux), sizeof(dado)) and i < capacidade)
+    while (i < capacidade and entrada.read((char *)(&aux), sizeof(dado)))
     {
         heap[i].registro = aux;
         heap[i].marcado = false;
         i++;
     }
-
-    if(!entrada.eof())
-        entrada.seekg(sizeof(dado)*capacidade);
 
     tamanho = i;
 
@@ -226,7 +223,7 @@ void criaBlocos()
         fita2.write((const char *)(&recebeRaiz), sizeof(dado));
     }
 
-    rename("o.bin", "guarda.bin");
+    remove("o.bin");
 }
 
 void intercala()

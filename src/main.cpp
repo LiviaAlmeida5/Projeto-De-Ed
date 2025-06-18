@@ -15,7 +15,7 @@
 
 using namespace std;
 
-void menu() 
+void menu()
 {
     char opcao;
 
@@ -60,7 +60,6 @@ void menu()
             exportaArquivo();
         case '0':
             system("clear");
-            remove("o.bin");
             break;
         default:
             system("clear");
@@ -72,9 +71,10 @@ void menu()
         }
 
     } while (opcao != '0');
+    remove("o.bin");
 }
 
-bool LeituraArquivo(string nome) 
+bool LeituraArquivo(string nome)
 {
     string linha;
     char lixo;
@@ -94,20 +94,20 @@ bool LeituraArquivo(string nome)
 
     // leitura do csv e escrita do binario
     ofstream saida("o.bin");
-    
+
     getline(arq, linha);
-    
+
     int i = 0;
-    
+
     while (arq.getline(buffer.Series_reference, 20, ','))
     {
         arq >> buffer.Period;
-        
+
         arq >> lixo;
-        
-        // tratamento de campo 
+
+        // tratamento de campo
         getline(arq, auxVerificaCampoVazio, ',');
-        
+
         if (not auxVerificaCampoVazio.empty())
         {
             buffer.Data_value = stof(auxVerificaCampoVazio);
@@ -116,24 +116,24 @@ bool LeituraArquivo(string nome)
         {
             buffer.Data_value = -1;
         }
-        
+
         arq >> buffer.Status;
-        
+
         arq >> lixo;
-        
+
         arq.getline(buffer.Units, 10, ',');
-        
+
         arq >> buffer.Magnitude;
-        
+
         arq >> lixo;
-        
+
         arq.getline(buffer.Subject, 50, ',');
-        
+
         arq.getline(buffer.Periodicity, 10, ',');
-        
+
         // tratamento de campo com ',' no texto
         arq >> auxVerificaCampoComVirgula;
-        
+
         if (auxVerificaCampoComVirgula == '"')
         {
             string guarda = "\"";
@@ -165,13 +165,13 @@ bool LeituraArquivo(string nome)
         }
 
         arq.getline(buffer.Series_title_1, 70, ',');
-        
+
         arq.getline(buffer.Series_title_2, 70, ',');
-        
+
         arq.getline(buffer.Series_title_3, 70, ',');
-        
+
         arq.getline(buffer.Series_title_4, 70, ',');
-        
+
         arq.getline(buffer.Series_title_5, 70);
 
         saida.write((const char *)(&buffer), sizeof(dado));
