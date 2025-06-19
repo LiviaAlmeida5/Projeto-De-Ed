@@ -1,6 +1,7 @@
 Projeto Pratico de ED-UFLA-2025/01:
 Manipulação e Ordenação de Arquivos Binários em Memoria Secundaria
-Integrantes: Gustavo G. Ribeiro, Lívia Maria, Mauricio Sandim:
+Integrantes: Gustavo G. Ribeiro, Lívia Maria, Mauricio Sandim.
+Tema:Intercalção Polifásica crescente com o arquivo CSV `'property-transfer-statistics-march-2022-quarter-csv.csv'`.
 
 **O objetivo**
 
