@@ -1,5 +1,5 @@
 Projeto Pratico de ED-UFLA-2025/01:
-Manipulação e Ordenação de Arquivos Binários em Memoria Secundaria
+Manipulação e Ordenação de Arquivos Binários em Memória Secundária
 
 Integrantes: Gustavo G. Ribeiro, Lívia Maria, Mauricio Sandim.
 
@@ -7,9 +7,9 @@ Tema: Intercalção Polifásica crescente com o arquivo CSV `'property-transfer-
 
 **O objetivo**
 
-O principal objetivo desse projeto e criar um programa capaz de ler um arquivo *CSV* com uma grande quantidade de entradas e transformá-lo em binário. A partir desse arquivo binário há a ordenação crescente dos dados utilizando o campo Data_Value, de forma que só a memoria externa é utilizada, e, ademais, é possível manipular e alterar as informações desse arquivo.
+O principal objetivo desse projeto é criar um programa capaz de ler um arquivo *CSV* com uma grande quantidade de entradas e transformá-lo em binário. A partir desse arquivo binário há a ordenação crescente dos dados utilizando o campo Data_Value, de forma que só a memória externa é utilizada, e, ademais, é possível manipular e alterar as informações desse arquivo.
 
-**As Função presentes nesse projeto são**
+**As Funções presentes nesse projeto são**
 
 [1] Adicionar um elemento no arquivo em uma posição específica qualquer. 
 
