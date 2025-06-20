@@ -110,13 +110,13 @@ void inserir()
         cout << "Escreva o novo 'Units': ";
         getline(cin, aux);
 
-        if (validacao(10, aux))
+        if (validacao(9, aux))
         {
             aux.copy(novo.Units, aux.size());
             novo.Units[aux.size()] = '\0';
         }
 
-    } while (aux.size() > 10 or aux.empty());
+    } while (aux.size() > 9 or aux.empty());
 
     do
     {
@@ -142,104 +142,104 @@ void inserir()
         cout << "Escreva o novo 'Subject': ";
         getline(cin, aux);
 
-        if (validacao(50, aux))
+        if (validacao(49, aux))
         {
             aux.copy(novo.Subject, aux.size());
             novo.Subject[aux.size()] = '\0';
         }
 
-    } while (aux.size() > 50 or aux.empty());
+    } while (aux.size() > 49 or aux.empty());
 
     do
     {
         cout << "Escreva o novo 'Periodicity': ";
         getline(cin, aux);
 
-        if (validacao(10, aux))
+        if (validacao(9, aux))
         {
             aux.copy(novo.Periodicity, aux.size());
             novo.Periodicity[aux.size()] = '\0';
         }
 
-    } while (aux.size() > 10 or aux.empty());
+    } while (aux.size() > 9 or aux.empty());
 
     do
     {
         cout << "Escreva o novo 'Group': ";
         getline(cin, aux);
 
-        if (validacao(100, aux))
+        if (validacao(99, aux))
         {
             aux.copy(novo.Group, aux.size());
             novo.Group[aux.size()] = '\0';
         }
 
-    } while (aux.size() > 100 or aux.empty());
+    } while (aux.size() > 99 or aux.empty());
 
     do
     {
         cout << "Escreva o novo 'Series_title_1': ";
         getline(cin, aux);
 
-        if (validacao(70, aux))
+        if (validacao(69, aux))
         {
             aux.copy(novo.Series_title_1, aux.size());
             novo.Series_title_1[aux.size()] = '\0';
         }
 
-    } while (aux.size() > 70 or aux.empty());
+    } while (aux.size() > 69 or aux.empty());
 
     do
     {
         cout << "Escreva o novo 'Series_title_2': ";
         getline(cin, aux);
 
-        if (validacao(70, aux))
+        if (validacao(69, aux))
         {
             aux.copy(novo.Series_title_2, aux.size());
             novo.Series_title_2[aux.size()] = '\0';
         }
 
-    } while (aux.size() > 70 or aux.empty());
+    } while (aux.size() > 69 or aux.empty());
 
     do
     {
         cout << "Escreva o novo 'Series_title_3': ";
         getline(cin, aux);
 
-        if (validacao(70, aux))
+        if (validacao(69, aux))
         {
             aux.copy(novo.Series_title_3, aux.size());
             novo.Series_title_3[aux.size()] = '\0';
         }
 
-    } while (aux.size() > 70 or aux.empty());
+    } while (aux.size() > 69 or aux.empty());
 
     do
     {
         cout << "Escreva o novo 'Series_title_4': ";
         getline(cin, aux);
 
-        if (validacao(70, aux))
+        if (validacao(69, aux))
         {
             aux.copy(novo.Series_title_4, aux.size());
             novo.Series_title_4[aux.size()] = '\0';
         }
 
-    } while (aux.size() > 70 or aux.empty());
+    } while (aux.size() > 69 or aux.empty());
 
     do
     {
         cout << "Escreva o novo 'Series_title_5': ";
         getline(cin, aux);
 
-        if (validacao(70, aux))
+        if (validacao(69, aux))
         {
             aux.copy(novo.Series_title_5, aux.size());
             novo.Series_title_5[aux.size()] = '\0';
         }
 
-    } while (aux.size() > 70 or aux.empty());
+    } while (aux.size() > 69 or aux.empty());
 
     // move para frente
     dado buffer;

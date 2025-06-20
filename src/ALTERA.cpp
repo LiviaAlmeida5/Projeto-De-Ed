@@ -79,13 +79,13 @@ void alterar()
             cout << "Escreva o alterado 'Series_reference': ";
             getline(cin, aux);
 
-            if (validacao(20, aux))
+            if (validacao(19, aux))
             {
                aux.copy(alterado.Series_reference, aux.size());
                alterado.Series_reference[aux.size()] = '\0';
             }
 
-         } while (aux.size() > 20 or aux.empty());
+         } while (aux.size() > 19 or aux.empty());
 
          break;
       case 2:
@@ -157,13 +157,13 @@ void alterar()
             cout << "Escreva o alterado 'Units': ";
             getline(cin, aux);
 
-            if (validacao(10, aux))
+            if (validacao(9, aux))
             {
                aux.copy(alterado.Units, aux.size());
                alterado.Units[aux.size()] = '\0';
             }
 
-         } while (aux.size() > 10 or aux.empty());
+         } while (aux.size() > 9 or aux.empty());
          break;
       case 6:
          cin.ignore();
@@ -193,13 +193,13 @@ void alterar()
             cout << "Escreva o alterado 'Subject': ";
             getline(cin, aux);
 
-            if (validacao(50, aux))
+            if (validacao(49, aux))
             {
                aux.copy(alterado.Subject, aux.size());
                alterado.Subject[aux.size()] = '\0';
             }
 
-         } while (aux.size() > 50 or aux.empty());
+         } while (aux.size() > 49 or aux.empty());
          break;
       case 8:
          cin.ignore();
@@ -208,13 +208,13 @@ void alterar()
             cout << "Escreva o alterado 'Periodicity': ";
             getline(cin, aux);
 
-            if (validacao(10, aux))
+            if (validacao(9, aux))
             {
                aux.copy(alterado.Periodicity, aux.size());
                alterado.Periodicity[aux.size()] = '\0';
             }
 
-         } while (aux.size() > 10 or aux.empty());
+         } while (aux.size() > 9 or aux.empty());
          break;
       case 9:
          cin.ignore();
@@ -223,13 +223,13 @@ void alterar()
             cout << "Escreva o alterado 'Group': ";
             getline(cin, aux);
 
-            if (validacao(100, aux))
+            if (validacao(99, aux))
             {
                aux.copy(alterado.Group, aux.size());
                alterado.Group[aux.size()] = '\0';
             }
 
-         } while (aux.size() > 100 or aux.empty());
+         } while (aux.size() > 99 or aux.empty());
          break;
       case 10:
          cin.ignore();
@@ -238,13 +238,13 @@ void alterar()
             cout << "Escreva o alterado 'Series_title_1': ";
             getline(cin, aux);
 
-            if (validacao(70, aux))
+            if (validacao(69, aux))
             {
                aux.copy(alterado.Series_title_1, aux.size());
                alterado.Series_title_1[aux.size()] = '\0';
             }
 
-         } while (aux.size() > 70 or aux.empty());
+         } while (aux.size() > 69 or aux.empty());
          break;
       case 11:
          cin.ignore();
@@ -253,13 +253,13 @@ void alterar()
             cout << "Escreva o alterado 'Series_title_2': ";
             getline(cin, aux);
 
-            if (validacao(70, aux))
+            if (validacao(69, aux))
             {
                aux.copy(alterado.Series_title_2, aux.size());
                alterado.Series_title_2[aux.size()] = '\0';
             }
 
-         } while (aux.size() > 70 or aux.empty());
+         } while (aux.size() > 69 or aux.empty());
          break;
       case 12:
          cin.ignore();
@@ -268,13 +268,13 @@ void alterar()
             cout << "Escreva o alterado 'Series_title_3': ";
             getline(cin, aux);
 
-            if (validacao(70, aux))
+            if (validacao(69, aux))
             {
                aux.copy(alterado.Series_title_3, aux.size());
                alterado.Series_title_3[aux.size()] = '\0';
             }
 
-         } while (aux.size() > 70 or aux.empty());
+         } while (aux.size() > 69 or aux.empty());
          break;
       case 13:
          cin.ignore();
@@ -283,13 +283,13 @@ void alterar()
             cout << "Escreva o alterado 'Series_title_4': ";
             getline(cin, aux);
 
-            if (validacao(70, aux))
+            if (validacao(69, aux))
             {
                aux.copy(alterado.Series_title_4, aux.size());
                alterado.Series_title_4[aux.size()] = '\0';
             }
 
-         } while (aux.size() > 70 or aux.empty());
+         } while (aux.size() > 69 or aux.empty());
          break;
       case 14:
          cin.ignore();
@@ -298,13 +298,13 @@ void alterar()
             cout << "Escreva o alterado 'Series_title_5': ";
             getline(cin, aux);
 
-            if (validacao(70, aux))
+            if (validacao(69, aux))
             {
                aux.copy(alterado.Series_title_5, aux.size());
                alterado.Series_title_5[aux.size()] = '\0';
             }
 
-         } while (aux.size() > 70 or aux.empty());
+         } while (aux.size() > 69 or aux.empty());
          break;
       case 0:
          break;

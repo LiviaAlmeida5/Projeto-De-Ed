@@ -17,32 +17,22 @@ bool operator<(dado d1, dado d2)
     return d1.Data_value < d2.Data_value;
 }
 
-bool operator>(dado d1, dado d2)
-{
-    return d1.Data_value > d2.Data_value;
-}
-
-bool operator<=(dado d1, dado d2)
-{
-    return d1.Data_value <= d2.Data_value;
-}
-
 bool operator>=(dado d1, dado d2)
 {
     return d1.Data_value >= d2.Data_value;
 }
 
-struct marca
+struct marca // struct para guardar o dado e a marca dele no heap
 {
     dado registro;
     bool marcado;
 };
 
-bool operator<(marca d1, marca d2)
+bool operator<(marca d1, marca d2) // sobrecarga de operador para comparação considerando o Data_Value e a marca
 {
     if (d1.marcado == d2.marcado)
     {
-        return d1.registro.Data_value < d2.registro.Data_value;
+        return d1.registro < d2.registro;
     }
 
     return !d1.marcado; // não marcados tem preferencia
@@ -62,13 +52,13 @@ private:
     inline int esquerdo(int i); // acha o filho esquerdo do valor
     inline int direito(int i);  // acha o filho direito do valor
     void corrigeDescendo(int i);
-    
-    public:
-    void heapfy(); // constroi o heap
+
+public:
     MinHeap(ifstream &entrada);
-    dado retiraRaiz();              // retira a raiz quando não há mais elementos no arquivo csv
-    dado retiraRaizCedo(dado novo); // retira a raiz quando há mais elementos no arquivo csv que precisam entrar no heap
-    void resetaMarca();
+    void heapfy();                        // constroi o heap
+    dado retiraRaiz();                    // retira a raiz quando não há mais elementos no arquivo csv
+    dado retiraRaizCedo(dado novo);       // retira a raiz quando há mais elementos no arquivo csv que precisam entrar no heap
+    void resetaMarca();                   // retira todas as marcas dos valores armazenados no heap
     bool vazia() { return tamanho == 0; } // verifica se o heap está vazio
 };
 
@@ -76,6 +66,7 @@ MinHeap::MinHeap(ifstream &entrada)
 {
     int i = 0;
     dado aux;
+    // copia os valores para o heap até que o heap esteja cheio ou os dados acabem
     while (i < capacidade and entrada.read((char *)(&aux), sizeof(dado)))
     {
         heap[i].registro = aux;
@@ -167,7 +158,8 @@ dado MinHeap::retiraRaizCedo(dado novo)
     int inicio = 0;
 
     dado aux = heap[inicio].registro;
-    
+
+    // marca o novo dado se necessário
     marca substitui;
     substitui.registro = novo;
     substitui.marcado = false;
@@ -180,6 +172,7 @@ dado MinHeap::retiraRaizCedo(dado novo)
 
     heapfy();
 
+    // reseta as marcar quando todos os dados armazenados estão marcados
     if (heap[inicio].marcado)
     {
         resetaMarca();
@@ -214,7 +207,9 @@ void criaBlocos()
         fita1.write((const char *)(&recebeRaiz), sizeof(dado));
     }
 
-    heap.resetaMarca();
+    // constroi a fita 2 com os dados que sobraram no heap após o.bin ser lido por completo
+
+    heap.resetaMarca(); // reseta a marca para refazer o heap e garantir que a fita 2 esteja ordenada
     heap.heapfy();
 
     while (!heap.vazia())
@@ -223,7 +218,7 @@ void criaBlocos()
         fita2.write((const char *)(&recebeRaiz), sizeof(dado));
     }
 
-    remove("o.bin");
+    remove("o.bin"); // apaga o.bin que será substituido
 }
 
 void intercala()

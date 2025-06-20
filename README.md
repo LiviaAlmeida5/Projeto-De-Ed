@@ -7,7 +7,7 @@ Tema: Intercalção Polifásica crescente com o arquivo CSV `'property-transfer-
 
 **O objetivo**
 
- O principal objetivo desse projeto e criar um programa capaz de ler um arquivo *CSV* com uma grande quantidade de entradas e transformá-lo em binário. A partir desse arquivo binário há a ordenação dos dados utilizado o campo Data_Value, de forma que só a memoria externa é utilizada, e, ademais, é possível manipular e alterar as informações desse arquivo.
+O principal objetivo desse projeto e criar um programa capaz de ler um arquivo *CSV* com uma grande quantidade de entradas e transformá-lo em binário. A partir desse arquivo binário há a ordenação crescente dos dados utilizando o campo Data_Value, de forma que só a memoria externa é utilizada, e, ademais, é possível manipular e alterar as informações desse arquivo.
 
 **As Função presentes nesse projeto são**
 
