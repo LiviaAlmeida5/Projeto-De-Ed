@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <fstream>
+#include <iomanip>
+#include <sstream>
 #include "../include/dado.h"
 
 using namespace std;
@@ -26,7 +28,10 @@ void exportaArquivo()
     // escrita dos dados
     while (in.read((char *)(&buffer), sizeof(dado)))
     {
-        teste << buffer.Series_reference << ',' << buffer.Period << ',' << buffer.Data_value << ',' << buffer.Status << ',' << buffer.Units << ',' << buffer.Magnitude << ',' << buffer.Subject << ',' << buffer.Periodicity << ',' << buffer.Group << ',' << buffer.Series_title_1 << ',' << buffer.Series_title_2 << ',' << buffer.Series_title_3 << ',' << buffer.Series_title_4 << ',' << buffer.Series_title_5 << endl;
+        ostringstream duasCasasDecimais;
+        duasCasasDecimais << setprecision(2) << fixed << buffer.Period;
+
+        teste << buffer.Series_reference << ',' << duasCasasDecimais.str() << ',' << buffer.Data_value << ',' << buffer.Status << ',' << buffer.Units << ',' << buffer.Magnitude << ',' << buffer.Subject << ',' << buffer.Periodicity << ',' << buffer.Group << ',' << buffer.Series_title_1 << ',' << buffer.Series_title_2 << ',' << buffer.Series_title_3 << ',' << buffer.Series_title_4 << ',' << buffer.Series_title_5 << endl;
     }
 
     cout << "Arquivo criado com sucesso!" << endl;

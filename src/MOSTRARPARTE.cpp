@@ -4,6 +4,8 @@
 #include <iostream>
 #include <fstream>
 #include "../include/dado.h"
+#include <iomanip>
+#include <sstream>
 
 using namespace std;
 
@@ -47,10 +49,13 @@ void mostra_x_ate_y()
     while (cont <= y)
     {
         arq.read(reinterpret_cast<char *>(&aux), sizeof(dado));
-
+        
         // Imprime o conteúdo
+        ostringstream teste;
+        teste << setprecision(2) << fixed << aux.Period;
+
         cout << cont << ": ";
-        cout << aux.Series_reference << " | " << aux.Period << " | " << aux.Data_value << " | " << aux.Status << " | " << aux.Units << " | " << aux.Magnitude << " | " << aux.Subject << " | " << aux.Periodicity << " | " << aux.Group << " | " << aux.Series_title_1 << " | " << aux.Series_title_2 << " | " << aux.Series_title_3 << " | " << aux.Series_title_4 << " | " << aux.Series_title_5 << endl;
+        cout << aux.Series_reference << " | " << teste.str() << " | " << aux.Data_value << " | " << aux.Status << " | " << aux.Units << " | " << aux.Magnitude << " | " << aux.Subject << " | " << aux.Periodicity << " | " << aux.Group << " | " << aux.Series_title_1 << " | " << aux.Series_title_2 << " | " << aux.Series_title_3 << " | " << aux.Series_title_4 << " | " << aux.Series_title_5 << endl;
         cout << endl;
         cont++;
     }
