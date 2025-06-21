@@ -14,11 +14,6 @@ const char carregamento[] = {'|', '/', '-', '\\'};
 // sobrecarga de operador de comparação
 bool operator<(dado d1, dado d2)
 {
-    if (d1.Data_value == d2.Data_value) // caso os dois sejam iguais, ordena pela data
-    {
-        return d1.Period < d2.Period;
-    }
-    
     return d1.Data_value < d2.Data_value;
 }
 
