@@ -14,6 +14,8 @@ void trocar()
      dado aux1, aux2;
      int posição1, posição2;
      fstream arq("o.bin");
+     if (!arq)
+          throw runtime_error("Arquivo temporário inexistente");
      ostringstream duasCasasDecimais; // variável para permitir a saída do dado com duas casas decimais sem prejudicar as demais saídas
 
      // recepção das posições

@@ -12,6 +12,8 @@ using namespace std;
 void visualizarTudo()
 {
     ifstream arq("o.bin", ios::binary);
+    if (!arq)
+        throw runtime_error("Arquivo temporário inexistente");
     dado aux;
     int cont = 0;
     bool mostraDeUmaVez = false;

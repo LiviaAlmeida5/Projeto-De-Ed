@@ -12,6 +12,8 @@ void inserir()
 {
     // Abre arquivo para leitura + escrita
     fstream arq("o.bin", ios::in | ios::out | ios::binary);
+    if (!arq)
+        throw runtime_error("Arquivo temporário inexistente");
 
     arq.seekg(0, ios::end);
     int total_registros = arq.tellg() / sizeof(dado);

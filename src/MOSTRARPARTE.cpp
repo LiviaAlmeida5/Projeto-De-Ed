@@ -12,6 +12,8 @@ using namespace std;
 void mostra_x_ate_y()
 {
     ifstream arq("o.bin", ios::binary);
+    if (!arq)
+        throw runtime_error("Arquivo temporário inexistente");
 
     int x, y;
 

@@ -20,6 +20,9 @@ void alterar()
    int posição;
    int opcao;
    fstream arq("o.bin");
+   if (!arq)
+      throw runtime_error("Arquivo temporário inexistente");
+   
    ostringstream duasCasasDecimais; // variável para permitir a saída do dado com duas casas decimais sem prejudicar as demais saídas
    
    // acesso da posição

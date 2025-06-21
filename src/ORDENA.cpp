@@ -235,6 +235,10 @@ void intercala()
 
     while (!fita1.eof())
     {
+        // mensagem de carrregamento
+        cout << '\b' << carregamento[i % 4];
+        cout.flush();
+        i++;
         // fita 3 sendo escrita
         if (alterna)
         {
@@ -248,10 +252,6 @@ void intercala()
 
             while (!fita2.eof())
             {
-                // mensagem de carrregamento
-                cout << '\b' << carregamento[i / 10 % 4];
-                cout.flush();
-                i++;
 
                 // caso bloco ou arquivo tenha terminado
                 if (fita1.eof() or compara1 < anterior)
@@ -297,12 +297,7 @@ void intercala()
             fita2.read((char *)(&compara2), sizeof(dado));
 
             while (!fita2.eof())
-            {
-                // mensagem de carrregamento
-                cout << '\b' << carregamento[i / 10 % 4];
-                cout.flush();
-                i++;
-                
+            {   
                 // caso bloco ou arquivo tenha terminado
                 if (fita1.eof() or compara1 < anterior)
                 {

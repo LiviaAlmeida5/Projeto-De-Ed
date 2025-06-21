@@ -11,6 +11,10 @@ using namespace std;
 
 void exportaArquivo()
 {
+    ifstream in("o.bin");
+    if (!in)
+        throw runtime_error("Arquivo temporário inexistente");
+
     string nomeArquivo;
     dado buffer;
 
@@ -22,8 +26,6 @@ void exportaArquivo()
 
     // escrita do cabeçaho
     teste << "Series_reference,Period,Data_value,Status,Units,Magnitude,Subject,Periodicity,Group,Series_title_1,Series_title_2,Series_title_3,Series_title_4,Series_title_5" << endl;
-
-    ifstream in("o.bin");
 
     // escrita dos dados
     while (in.read((char *)(&buffer), sizeof(dado)))
