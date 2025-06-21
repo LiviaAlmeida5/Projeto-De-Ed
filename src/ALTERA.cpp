@@ -7,6 +7,8 @@
 #include <fstream>
 #include <string>
 #include <stdexcept>
+#include <iomanip>
+#include <sstream>
 
 using namespace std;
 
@@ -18,7 +20,8 @@ void alterar()
    int posição;
    int opcao;
    fstream arq("o.bin");
-
+   ostringstream duasCasasDecimais; // variável para permitir a saída do dado com duas casas decimais sem prejudicar as demais saídas
+   
    // acesso da posição
    arq.seekg(0, arq.end);
    int tam = arq.tellg() / sizeof(dado);
@@ -44,10 +47,12 @@ void alterar()
    // menu de alteração
    do
    {
+      duasCasasDecimais << setprecision(2) << fixed << alterado.Period;
+
       system("clear");
       cout << "Os dados dessa posição são:" << endl;
       cout << "Series_reference | Period | Data_value | Status | Units | Magnitude | Subject | Periodicity | Group | Series_title_1 | Series_title_2 | Series_title_3 | Series_title_4 | Series_title_5" << endl;
-      cout << alterado.Series_reference << " | " << alterado.Period << " | " << alterado.Data_value << " | " << alterado.Status << " | " << alterado.Units << " | " << alterado.Magnitude << " | " << alterado.Subject << " | " << alterado.Periodicity << " | " << alterado.Group << " | " << alterado.Series_title_1 << " | " << alterado.Series_title_2 << " | " << alterado.Series_title_3 << " | " << alterado.Series_title_4 << " | " << alterado.Series_title_5 << endl;
+      cout << alterado.Series_reference << " | " << duasCasasDecimais.str() << " | " << alterado.Data_value << " | " << alterado.Status << " | " << alterado.Units << " | " << alterado.Magnitude << " | " << alterado.Subject << " | " << alterado.Periodicity << " | " << alterado.Group << " | " << alterado.Series_title_1 << " | " << alterado.Series_title_2 << " | " << alterado.Series_title_3 << " | " << alterado.Series_title_4 << " | " << alterado.Series_title_5 << endl;
       cout << endl;
 
       cout << "Qual parte do registro você deseja aleterar?" << endl;
@@ -321,8 +326,10 @@ void alterar()
    arq.seekg(posição * sizeof(dado));
    arq.read((char *)(&alterado), sizeof(dado));
 
+   duasCasasDecimais << setprecision(2) << fixed << alterado.Period;
+
    cout << endl;
-   cout << alterado.Series_reference << " | " << alterado.Period << " | " << alterado.Data_value << " | " << alterado.Status << " | " << alterado.Units << " | " << alterado.Magnitude << " | " << alterado.Subject << " | " << alterado.Periodicity << " | " << alterado.Group << " | " << alterado.Series_title_1 << " | " << alterado.Series_title_2 << " | " << alterado.Series_title_3 << " | " << alterado.Series_title_4 << " | " << alterado.Series_title_5 << endl;
+   cout << alterado.Series_reference << " | " << duasCasasDecimais.str() << " | " << alterado.Data_value << " | " << alterado.Status << " | " << alterado.Units << " | " << alterado.Magnitude << " | " << alterado.Subject << " | " << alterado.Periodicity << " | " << alterado.Group << " | " << alterado.Series_title_1 << " | " << alterado.Series_title_2 << " | " << alterado.Series_title_3 << " | " << alterado.Series_title_4 << " | " << alterado.Series_title_5 << endl;
    cout << endl;
 
    cout << "Registro guardado!!" << endl;

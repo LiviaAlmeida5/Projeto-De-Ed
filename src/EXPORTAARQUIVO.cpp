@@ -28,7 +28,7 @@ void exportaArquivo()
     // escrita dos dados
     while (in.read((char *)(&buffer), sizeof(dado)))
     {
-        ostringstream duasCasasDecimais;
+        ostringstream duasCasasDecimais; // variável para permitir a saída do dado com duas casas decimais sem prejudicar as demais saídas
         duasCasasDecimais << setprecision(2) << fixed << buffer.Period;
 
         teste << buffer.Series_reference << ',' << duasCasasDecimais.str() << ',' << buffer.Data_value << ',' << buffer.Status << ',' << buffer.Units << ',' << buffer.Magnitude << ',' << buffer.Subject << ',' << buffer.Periodicity << ',' << buffer.Group << ',' << buffer.Series_title_1 << ',' << buffer.Series_title_2 << ',' << buffer.Series_title_3 << ',' << buffer.Series_title_4 << ',' << buffer.Series_title_5 << endl;

@@ -15,14 +15,14 @@ void mostra_x_ate_y()
 
     int x, y;
 
-    // recepção das posições 
+    // recepção das posições
     arq.seekg(0, arq.end);
     int tam = arq.tellg() / sizeof(dado);
     arq.seekg(0, arq.beg);
 
     do
     {
-        cout << "A posição inicial a qual deseja mostrar (De 0 até " << tam-1 << "): " << endl;
+        cout << "A posição inicial a qual deseja mostrar (De 0 até " << tam - 1 << "): " << endl;
         cin >> x;
         if (x < 0 or x >= tam)
         {
@@ -33,7 +33,7 @@ void mostra_x_ate_y()
 
     do
     {
-        cout << "A última posição a qual deseja mostrar: (De " << x << " até " << tam-1 << ")" << endl;
+        cout << "A última posição a qual deseja mostrar: (De " << x << " até " << tam - 1 << ")" << endl;
         cin >> y;
         if (y < x or y >= tam)
         {
@@ -49,13 +49,13 @@ void mostra_x_ate_y()
     while (cont <= y)
     {
         arq.read(reinterpret_cast<char *>(&aux), sizeof(dado));
-        
+
         // Imprime o conteúdo
-        ostringstream teste;
-        teste << setprecision(2) << fixed << aux.Period;
+        ostringstream duasCasasDecimais; // variável para permitir a saída do dado com duas casas decimais sem prejudicar as demais saídas
+        duasCasasDecimais << setprecision(2) << fixed << aux.Period;
 
         cout << cont << ": ";
-        cout << aux.Series_reference << " | " << teste.str() << " | " << aux.Data_value << " | " << aux.Status << " | " << aux.Units << " | " << aux.Magnitude << " | " << aux.Subject << " | " << aux.Periodicity << " | " << aux.Group << " | " << aux.Series_title_1 << " | " << aux.Series_title_2 << " | " << aux.Series_title_3 << " | " << aux.Series_title_4 << " | " << aux.Series_title_5 << endl;
+        cout << aux.Series_reference << " | " << duasCasasDecimais.str() << " | " << aux.Data_value << " | " << aux.Status << " | " << aux.Units << " | " << aux.Magnitude << " | " << aux.Subject << " | " << aux.Periodicity << " | " << aux.Group << " | " << aux.Series_title_1 << " | " << aux.Series_title_2 << " | " << aux.Series_title_3 << " | " << aux.Series_title_4 << " | " << aux.Series_title_5 << endl;
         cout << endl;
         cont++;
     }
