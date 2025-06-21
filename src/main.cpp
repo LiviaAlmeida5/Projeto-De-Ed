@@ -17,6 +17,8 @@ using namespace std;
 
 void menu()
 {
+    system("clear");
+
     char opcao;
 
     do

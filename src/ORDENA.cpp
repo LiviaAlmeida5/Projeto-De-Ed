@@ -199,7 +199,7 @@ void criaBlocos()
     // constroi a fita 1 de forma assimétrica enquanto o o.bin não foi lido por completo
     while (entrada.read((char *)(&recebeDoArquivo), sizeof(dado)))
     {
-        cout << '\b' << carregamento[i / 1000 % 4];
+        cout << '\b' << carregamento[i / 100 % 4];
         cout.flush();
         i++;
 
@@ -235,11 +235,6 @@ void intercala()
 
     while (!fita1.eof())
     {
-        // mensagem de carrregamento
-        cout << '\b' << carregamento[i / 10 % 4];
-        cout.flush();
-        i++;
-
         // fita 3 sendo escrita
         if (alterna)
         {
@@ -253,6 +248,11 @@ void intercala()
 
             while (!fita2.eof())
             {
+                // mensagem de carrregamento
+                cout << '\b' << carregamento[i / 10 % 4];
+                cout.flush();
+                i++;
+
                 // caso bloco ou arquivo tenha terminado
                 if (fita1.eof() or compara1 < anterior)
                 {
@@ -298,6 +298,11 @@ void intercala()
 
             while (!fita2.eof())
             {
+                // mensagem de carrregamento
+                cout << '\b' << carregamento[i / 10 % 4];
+                cout.flush();
+                i++;
+                
                 // caso bloco ou arquivo tenha terminado
                 if (fita1.eof() or compara1 < anterior)
                 {
