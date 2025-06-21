@@ -1,6 +1,7 @@
 // Nomes dos Membros do Grupo: Gustavo Gerônimo Ribeiro, Lívia Maria Almeida Silva e Maurício Vicente Sandim
 // Funções utilizadas para ordenar o arquivo com base no campo Data_Value utilizando intercalação polifásica
 
+#include <stdexcept>
 #include <iostream>
 #include <fstream>
 #include <algorithm>

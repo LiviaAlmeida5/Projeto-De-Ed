@@ -3,9 +3,10 @@
 
 #include <iostream>
 #include <fstream>
-#include "../include/dado.h"
 #include <sstream>
 #include <iomanip>
+#include <stdexcept>
+#include "../include/dado.h"
 
 using namespace std;
 

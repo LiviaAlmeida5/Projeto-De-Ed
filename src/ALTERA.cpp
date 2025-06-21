@@ -1,14 +1,14 @@
 // Nomes dos Membros do Grupo: Gustavo Gerônimo Ribeiro, Lívia Maria Almeida Silva e Maurício Vicente Sandim
 // Função para alterar as informações de um determinado registro
 
-#include "../include/VALIDACAO.h"
-#include "../include/dado.h"
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <stdexcept>
 #include <iomanip>
 #include <sstream>
+#include "../include/VALIDACAO.h"
+#include "../include/dado.h"
 
 using namespace std;
 

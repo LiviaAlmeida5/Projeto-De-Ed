@@ -2,6 +2,9 @@
 // Função principal com  abertura do arquivo, ordenação e menu principal
 
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <stdexcept>
 #include "../include/MOSTRARTUDO.h"
 #include "../include/ORDENA.h"
 #include "../include/ALTERA.h"
@@ -10,8 +13,6 @@
 #include "../include/MOSTRARPARTE.h"
 #include "../include/EXPORTAARQUIVO.h"
 #include "../include/dado.h"
-#include <fstream>
-#include <string>
 
 using namespace std;
 

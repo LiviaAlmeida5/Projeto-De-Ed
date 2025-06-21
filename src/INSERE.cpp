@@ -1,10 +1,11 @@
 // Nomes dos Membros do Grupo: Gustavo Gerônimo Ribeiro, Lívia Maria Almeida Silva e Maurício Vicente Sandim
 // Função para inserir um registro em uma determinada posição
 
-#include "../include/VALIDACAO.h"
-#include "../include/dado.h"
 #include <iostream>
 #include <fstream>
+#include <stdexcept>
+#include "../include/VALIDACAO.h"
+#include "../include/dado.h"
 
 using namespace std;
 

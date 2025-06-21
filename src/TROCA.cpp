@@ -1,11 +1,12 @@
 // Nomes dos Membros do Grupo: Gustavo Gerônimo Ribeiro, Lívia Maria Almeida Silva e Maurício Vicente Sandim
 // Função para trocar dois registros do arquivo
 
-#include "../include/dado.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <iomanip>
+#include <stdexcept>
+#include "../include/dado.h"
 
 using namespace std;
 
