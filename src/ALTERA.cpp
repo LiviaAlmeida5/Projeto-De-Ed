@@ -18,13 +18,14 @@ void alterar()
    dado alterado;
    string aux;
    int posição;
+   string auxOpcao;
    int opcao;
    fstream arq("o.bin");
    if (!arq)
       throw runtime_error("Arquivo temporário inexistente");
-   
+
    ostringstream duasCasasDecimais; // variável para permitir a saída do dado com duas casas decimais sem prejudicar as demais saídas
-   
+
    // acesso da posição
    arq.seekg(0, arq.end);
    int tam = arq.tellg() / sizeof(dado);
@@ -35,7 +36,7 @@ void alterar()
 
    do
    {
-      cout << "Digite a posição que você deseja alterar seu registro (De 0 até " << tam-1 << "): ";
+      cout << "Digite a posição que você deseja alterar seu registro (De 0 até " << tam - 1 << "): ";
       cin >> posição;
       if (posição < 0 or posição >= tam)
       {
@@ -77,7 +78,19 @@ void alterar()
       cout << "[14] Series_title_5 " << endl;
       cout << "[0] Finalizar alterações " << endl;
 
-      cin >> opcao;
+      do
+      {
+         cin >> auxOpcao;
+         if (not validacaoInt(auxOpcao) or auxOpcao.empty())
+         {
+            cout << "======================================================================================================================" << endl;
+            cout << endl;
+            cout << "Opção inválida!!" << endl;
+            cout << endl;
+         }
+      } while (not validacaoInt(auxOpcao) or auxOpcao.empty());
+
+      opcao = stoi(auxOpcao);
 
       switch (opcao)
       {
