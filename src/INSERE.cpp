@@ -69,7 +69,7 @@ void inserir()
 
     do
     {
-        cout << "Escreva o novo 'Data_value'(int): ";
+        cout << "Escreva o novo 'Data_value'(float): ";
         getline(cin, aux);
 
         if (validacaoFloat(aux))
