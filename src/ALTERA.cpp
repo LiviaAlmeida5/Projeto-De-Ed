@@ -47,6 +47,7 @@ void alterar()
    // menu de alteração
    do
    {
+      duasCasasDecimais.str(""); // limpeza da variável
       duasCasasDecimais << setprecision(2) << fixed << alterado.Period;
 
       system("clear");
@@ -326,6 +327,7 @@ void alterar()
    arq.seekg(posição * sizeof(dado));
    arq.read((char *)(&alterado), sizeof(dado));
 
+   duasCasasDecimais.str(""); // limpeza da variável
    duasCasasDecimais << setprecision(2) << fixed << alterado.Period;
 
    cout << endl;

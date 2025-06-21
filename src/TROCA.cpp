@@ -51,6 +51,7 @@ void trocar()
      arq.seekg(posição1 * sizeof(dado));
      arq.read((char *)(&aux1), sizeof(dado));
 
+     duasCasasDecimais.str(""); // limpeza da variável
      duasCasasDecimais << setprecision(2) << fixed << aux1.Period;
      cout << "Registro na posição: " << posição1 << endl;
      cout << aux1.Series_reference << " | " << duasCasasDecimais.str() << " | " << aux1.Data_value << " | " << aux1.Status << " | " << aux1.Units << " | " << aux1.Magnitude << " | " << aux1.Subject << " | " << aux1.Periodicity << " | " << aux1.Group << " | " << aux1.Series_title_1 << " | " << aux1.Series_title_2 << " | " << aux1.Series_title_3 << " | " << aux1.Series_title_4 << " | " << aux1.Series_title_5 << endl;
@@ -58,6 +59,7 @@ void trocar()
      arq.seekg(posição2 * sizeof(dado));
      arq.read((char *)(&aux2), sizeof(dado));
 
+     duasCasasDecimais.str(""); // limpeza da variável
      duasCasasDecimais << setprecision(2) << fixed << aux2.Period;
      cout << "Registro na posição: " << posição2 << endl;
      cout << aux2.Series_reference << " | " << duasCasasDecimais.str() << " | " << aux2.Data_value << " | " << aux2.Status << " | " << aux2.Units << " | " << aux2.Magnitude << " | " << aux2.Subject << " | " << aux2.Periodicity << " | " << aux2.Group << " | " << aux2.Series_title_1 << " | " << aux2.Series_title_2 << " | " << aux2.Series_title_3 << " | " << aux2.Series_title_4 << " | " << aux2.Series_title_5 << endl;
@@ -81,10 +83,12 @@ void trocar()
      arq.seekg(posição1 * sizeof(dado));
      arq.read((char *)(&aux1), sizeof(dado));
 
+     duasCasasDecimais.str(""); // limpeza da variável
      duasCasasDecimais << setprecision(2) << fixed << aux1.Period;
      cout << "Registro na posição: " << posição1 << endl;
      cout << aux1.Series_reference << " | " << duasCasasDecimais.str() << " | " << aux1.Data_value << " | " << aux1.Status << " | " << aux1.Units << " | " << aux1.Magnitude << " | " << aux1.Subject << " | " << aux1.Periodicity << " | " << aux1.Group << " | " << aux1.Series_title_1 << " | " << aux1.Series_title_2 << " | " << aux1.Series_title_3 << " | " << aux1.Series_title_4 << " | " << aux1.Series_title_5 << endl;
 
+     duasCasasDecimais.str(""); // limpeza da variável
      duasCasasDecimais << setprecision(2) << fixed << aux2.Period;
      cout << "Registro na posição: " << posição2 << endl;
      cout << aux2.Series_reference << " | " << duasCasasDecimais.str() << " | " << aux2.Data_value << " | " << aux2.Status << " | " << aux2.Units << " | " << aux2.Magnitude << " | " << aux2.Subject << " | " << aux2.Periodicity << " | " << aux2.Group << " | " << aux2.Series_title_1 << " | " << aux2.Series_title_2 << " | " << aux2.Series_title_3 << " | " << aux2.Series_title_4 << " | " << aux2.Series_title_5 << endl;
